@@ -105,40 +105,36 @@ I think these commands are enough but still you forgot some commands you can tak
 <br>
 ### Example
 
-* 
-* Fork Backend repo
-* come to your profile and you will see you have a copy of that repo i.e Backend in your profile
-* Copy clone url and open terminal
-* Url will be <span class="colour" style="color:rgb(212, 212, 212)"></span>
+* Clone Navprayas Backend Repo
 
 ```
-https://github.com/<your-profile>/Backend.git
+git clone https://github.com/Navprayas-A-group-of-Innovative-thought/Backend.git
 ```
 
-* Paste `git clone <url>`
-* You will see a backend folder
+* <span class="highlight" style="background-color:inherit"><span class="colour" style="color:var(--vscode-markdown-wysList)">You will see a backend folder</span></span>
 * `cd Backend`
-* To check your current branch `git branch`
-* Do not write any changes in master.
-* Now your are assigned to issue#1. So to create local branch for it from your local master branch on your local computer. First be in master branch.
-* \<repeat from here for issue 2 or later otherwise ignore>
-* open terminal and ensure you are in master branch and paste `git checkout -b issue#1`
-* Now work on your issue
-* Now check status of your files changed
-* `git status`
-* To add those changes in your branch `git add .`
-* Now commit your changes `git commit -m "add signin API or your message"`
-* Now it is time to push your changes to your remote branch not in upstream(Navprayas Backend)
+* To check your current branch - `git branch`
+* Now you have been assigned issue#1. 
+* Update your master branch from origin master
+  
+   **Repeat Point : commands to be reused**
+* `git checkout master` to switch to master branch
+* `git pull` to get changes from remote master branch to your local master branch
+* Now create a local branch named issue#1 for your work.
+* `git checkout -b issue#1`
+* Now you are in issue#1 branch and now do your work.Then add your changes.
+* `git add .`
+* Then commit your changes.
+* `git commit -m "your message"`
+* Your commit should answer what this commit will do. Answer should be This commit will "your message".
+* Now push your branch work to Navprayas backend repo.
 * `git push origin issue#1`
-* Now it is time to push your work to navprayas backend but note you have to push changes to devlopment branch, process is also known as creating a pull request.
-* Open you github profile and select branch issue#1
-* Now create a pull request to Navprayas Backend development branch
+*  Now it is time to push your work to navprayas backend but note you have to push changes to devlopment branch, process is also known as creating a pull request.
+* Open you github and select branch issue#1
+* Now create a pull request to development branch
 * Then Admin will merge your request to master accordingly.
-* For another issue, first go to master branch.
-* `git checkout master`
-* Get changes from Navprayas main repo i.e upstream. So to update you will have to fetch code from navprayas master branch.
-* `git fetch upstream master`
-* Now repeat steps indicated above.
+* For another issue, first go to **Repeat point**.
+
 
 ##### Instructions for Files
 
