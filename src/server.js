@@ -36,6 +36,6 @@ app.get('/',(req, res)=>{
 
 
 // creating server and running
-const port = 5000;
+const port = process.env.PORT || 5000;
 app.listen(port, ()=> console.log(`server is running at http://localhost:${port}`))
 
