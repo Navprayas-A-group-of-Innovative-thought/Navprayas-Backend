@@ -105,7 +105,7 @@ I think these commands are enough but still you forgot some commands you can tak
 <br>
 ### Example
 
-* Open your github profile
+* 
 * Fork Backend repo
 * come to your profile and you will see you have a copy of that repo i.e Backend in your profile
 * Copy clone url and open terminal
@@ -140,14 +140,13 @@ https://github.com/<your-profile>/Backend.git
 * `git fetch upstream master`
 * Now repeat steps indicated above.
 
-
 ##### Instructions for Files
 
 * Write schemas in model and name like user.model.js
 * routes should be in routes folder and name like user.route.js
 * Do not delete sample.route.js ans sample.model.js
 * Learn to use .env and keep only secret info there
-* Keep non secret info in Backend/config.js file
+* Keep non secret info in config.js file
 * Comments should in between the codes
 * write there how to use your API in HOWTO.md
 
