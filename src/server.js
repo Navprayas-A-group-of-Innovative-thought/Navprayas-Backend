@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import dotenv from "dotenv";
 //for cross origin resource sharing
 import cors from 'cors'
-import config from '../config'
+import config from './config'
 // using env values 
 dotenv.config();
 
