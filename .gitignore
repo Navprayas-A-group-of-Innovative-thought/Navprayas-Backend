@@ -1,3 +1,9 @@
+#Add you navprayas git ignores here
+
+
+
+#Common Node gitignores added automatically
+
 # Logs
 logs
 *.log

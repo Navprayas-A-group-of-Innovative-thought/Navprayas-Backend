@@ -10,32 +10,6 @@
     * [Mongoose](https://mongoosejs.com/)
     * [Passport](http://www.passportjs.org/)
 
-## How to run
-<br>
-* **Run your code for development**
-
-```
-npm start
-```
-
-* **Building your code**
-
-```
-npm run build
-```
-
-* **Run production code**
-
-```
-npm run production
-```
-
-* **Clean dist folder**
-
-```
-npm run clean
-```
-
 ## Contribution Guide (Follow example in bottom for the best understanding)
 
 * Fork the repo
@@ -147,7 +121,7 @@ https://github.com/<your-profile>/Backend.git
 * routes should be in routes folder and name like user.route.js
 * Do not delete sample.route.js ans sample.model.js
 * Learn to use .env and keep only secret info there
-* Keep non secret info in Backend/config.js file
+* Keep non secret info in config.js file
 * Comments should in between the codes
 * write there how to use your API in HOWTO.md
 
