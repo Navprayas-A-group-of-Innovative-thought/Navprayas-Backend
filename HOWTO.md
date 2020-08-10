@@ -114,7 +114,7 @@ https://github.com/<your-profile>/Backend.git
 * `git fetch upstream master`
 * Now repeat steps indicated above.
 
-<br>
+
 ##### Instructions for Files
 
 * Write schemas in model and name like user.model.js
