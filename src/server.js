@@ -12,6 +12,8 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+console.log(process.env)
+
 //---------------------------------------------------------------------
 // database 
 const mongodbUrl = config.MONGODB_URL;
@@ -39,6 +41,5 @@ app.get('/',(req, res)=>{
 
 
 // creating server and running
-const port = process.env.PORT || 5000;
-app.listen(port, ()=> console.log(`server is running at http://localhost:${port}`))
+app.listen(config.PORT, ()=> console.log(`server is running at http://localhost:${config.PORT}`))
 
