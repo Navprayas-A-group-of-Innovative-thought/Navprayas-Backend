@@ -9,7 +9,6 @@
     "production": "npm run build && node dist/server",
     "start": "nodemon --watch src --exec babel-node src/server.js",
     "heroku-postbuild": "npm install && npm run build",
-    "push" : "git add . && git commit -m $npm_config_msg && git push"
   },
   "keywords": [],
   "author": "",

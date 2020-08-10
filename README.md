@@ -94,7 +94,7 @@ I think these commands are enough but still you forgot some commands you can tak
 * Clone Navprayas Backend Repo
 
 ```
-git clone https://github.com/Navprayas-A-group-of-Innovative-thought/Backend.git
+git clone https://github.com/Navprayas-A-group-of-Innovative-thought/Navprayas-Backend.git
 ```
 
 * <span class="highlight" style="background-color:inherit"><span class="colour" style="color:var(--vscode-markdown-wysList)">You will see a backend folder</span></span>
