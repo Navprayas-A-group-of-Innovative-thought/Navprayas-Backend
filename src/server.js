@@ -32,7 +32,7 @@ connection.once('open', ()=>console.log("database connected"));
 
 app.get('/',(req, res)=>{
     res.json({
-        "msg": "NavPrayas is UP and Running",
+        "msg": "Navprayas Backend is Up",
         "isRunning": true
         })
 })
