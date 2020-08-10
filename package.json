@@ -8,7 +8,7 @@
     "build": "npm run clean && mkdir dist && babel src -s -d dist",
     "production": "npm run build && node dist/server",
     "start": "nodemon --watch src --exec babel-node src/server.js",
-    "heroku-postbuild": "npm install && npm run build",
+    "heroku-postbuild": "npm install && npm run build"
   },
   "keywords": [],
   "author": "",
