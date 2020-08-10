@@ -31,7 +31,7 @@ connection.once('open', ()=>console.log("database connected"));
 //Handle request here
 
 app.get('/',(req, res)=>{
-    res.send({msg:"Welcome to Navprayas Backend Server"})
+    res.json({msg:"Welcome to Navprayas Backend Server"})
 })
 
 
