@@ -1,3 +1,5 @@
 export default {
-    MONGODB_URL: process.env.MONGODB_URL || "mongodb://localhost:27017/Navprayas",
+    MONGODB_URL: process.env.MONGODB_URL || "mongodb+srv://Navprayas:123@Kedar@cluster0-sb4wy.mongodb.net/Navprayas?retryWrites=true&w=majority",
   };
+
+  
