@@ -107,7 +107,7 @@ git clone https://github.com/Navprayas-A-group-of-Innovative-thought/Navprayas-B
   
    **Repeat Point : commands to be reused**
 * `git checkout master` to switch to local master branch
-* `git pull` to get changes from remote master branch to your local master branch. Note `git pull` pulls all changes from remote branch to your local branch, it does not work necessarily only master branch but is true for all branches.
+* `git pull` to get changes from remote master branch to your local master branch. Note `git pull` pulls all changes from (current)remote branch to your current local branch, it does not work necessarily only master branch but is true for all branches.
 * Now create a local branch named issue#1 for your work.
 * `git checkout -b issue#1`
 * Now you are in issue#1 branch and now do your work.Then add your changes.
