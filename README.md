@@ -1,6 +1,6 @@
 <img src="http://navprayas.in/static/img/pp2.png">
 <h1>Navprayas-A Group of Innovative Thoughts ( Main Website Backend )
-</h1>This will be our official main website.
+</h1>This will be our official main website
 
 ## Tech Stack
 
