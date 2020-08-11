@@ -98,16 +98,16 @@ git clone https://github.com/Navprayas-A-group-of-Innovative-thought/Navprayas-B
 ```
 
 * <span class="highlight" style="background-color:inherit"><span class="colour" style="color:var(--vscode-markdown-wysList)">You will see a backend folder</span></span>
-* `cd Backend`
+* `cd Navprayas-Backend`
 * Install all dependencies
 * `npm install`
 * To check your current branch - `git branch`
 * Now you have been assigned issue#1. 
-* Update your master branch from origin master
+* Update your local master branch from origin master
   
    **Repeat Point : commands to be reused**
-* `git checkout master` to switch to master branch
-* `git pull` to get changes from remote master branch to your local master branch
+* `git checkout master` to switch to local master branch
+* `git pull` to get changes from remote master branch to your local master branch. Note `git pull` pulls all changes from remote branch to your local branch, it does not work necessarily only master branch but is true for all branches.
 * Now create a local branch named issue#1 for your work.
 * `git checkout -b issue#1`
 * Now you are in issue#1 branch and now do your work.Then add your changes.
@@ -115,7 +115,7 @@ git clone https://github.com/Navprayas-A-group-of-Innovative-thought/Navprayas-B
 * Then commit your changes.
 * `git commit -m "your message"`
 * Your commit should answer what this commit will do. Answer should be This commit will "your message".
-* Now push your branch work to Navprayas backend repo.
+* Now push your branch work to Navprayas backend repo. Note you are in issue#1 branch.
 * `git push origin issue#1`
 *  Now it is time to push your work to navprayas backend but note you have to push changes to devlopment branch, process is also known as creating a pull request.
 * Open you github and select branch issue#1
