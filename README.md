@@ -97,28 +97,28 @@ I think these commands are enough but still you forgot some commands you can tak
 git clone https://github.com/Navprayas-A-group-of-Innovative-thought/Navprayas-Backend.git
 ```
 
-* <span class="highlight" style="background-color:inherit"><span class="colour" style="color:var(--vscode-markdown-wysList)">You will see a backend folder</span></span>
+* <span class="highlight" style="background-color:inherit"><span class="colour" style="color:var(--vscode-markdown-wysList)">You will see a Navprayas-Backend folder</span></span>
 * `cd Navprayas-Backend`
 * Install all dependencies
 * `npm install`
 * To check your current branch - `git branch`
-* Now you have been assigned issue#1. 
-* Update your local master branch from origin master
   
    **Repeat Point : commands to be reused**
-* `git checkout master` to switch to local master branch
-* `git pull` to get changes from remote master branch to your local master branch. Note `git pull` pulls all changes from (current)remote branch to your current local branch, it does not work necessarily only master branch but is true for all branches.
-* Now create a local branch named issue#1 for your work.
-* `git checkout -b issue#1`
-* Now you are in issue#1 branch and now do your work.Then add your changes.
+
+* Now you have been assigned test. 
+* Open Github and Create a remote branch in test in origin(remote). 
+* Come to your local computer and
+  
+* `git checkout test` to switch to local test branch (test branch already exists in remote so no need to create).
+* `git pull` to get changes from remote test branch to your local test branch. Note `git pull` pulls all changes from (current)remote branch to your current local branch, it does not work necessarily only master branch but is true for all branches.
+* Now do your work.Then add your changes.
 * `git add .`
 * Then commit your changes.
 * `git commit -m "your message"`
 * Your commit should answer what this commit will do. Answer should be This commit will "your message".
-* Now push your branch work to Navprayas backend repo. Note you are in issue#1 branch.
-* `git push origin issue#1`
-*  Now it is time to push your work to navprayas backend but note you have to push changes to devlopment branch, process is also known as creating a pull request.
-* Open you github and select branch issue#1
+* Now push your branch work to Navprayas backend repo. Note you are in test branch.
+* `git push` will push all your local changes to remote test.
+* Open you github and select branch test
 * Now create a pull request to development branch
 * Then Admin will merge your request to master accordingly.
 * For another issue, first go to **Repeat point**.
