@@ -26,6 +26,13 @@ const connection = mongoose.connection;
 connection.once('open', ()=>console.log("database connected"));
 //---------------------------------------------------------------------
 //import routing here
+var mtseFormRouter = require('./routes/mtseForm.route');
+var puzzleRaceFormRouter = require('./routes/puzzleRaceForm.route');
+var fhsFormRouter = require('./routes/fhsForm.route');
+var chessFormRouter = require('./routes/chessForm.route');
+var careercFormRouter = require('./routes/carrerForm.route');
+var rangotsavFormRouter = require('./routes/rangotsavForm.route');
+var userForm = require('./model/userForm.model');
 
 //---------------------------------------------------------------------
 //Handle request here
@@ -37,6 +44,12 @@ app.get('/',(req, res)=>{
         })
 })
 
+app.use('/mtse',mtseFormRouter);                                       // request on /mtse 
+app.use('/puzzlerace',puzzleRaceFormRouter);                           // request on /puzzlerace
+app.use('/fhs',fhsFormRouter);                                         // request on /fhs
+app.use('/chess',chessFormRouter);                                     // request on /chess
+app.use('/career',careercFormRouter);                                  // request on /career
+app.use('/rangotsav',rangotsavFormRouter);                             // request on /rangotsav
 
 // creating server and running
 const port = process.env.PORT || 5000;
