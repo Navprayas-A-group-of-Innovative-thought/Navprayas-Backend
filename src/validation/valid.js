@@ -33,7 +33,7 @@ exports.forgotPasswordValidator = [
 exports.resetPasswordValidator = [
     check('newPassword', 'Password is required.')
     .notEmpty()
-    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/, "i")
+    // .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/, "i")
     .withMessage(
       "Must contain atleast one lower case, one uppercase, one special character and one digit."
     ),
