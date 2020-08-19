@@ -32,6 +32,7 @@ var fhsFormRouter = require('./routes/fhsForm.route');
 var chessFormRouter = require('./routes/chessForm.route');
 var careercFormRouter = require('./routes/carrerForm.route');
 var rangotsavFormRouter = require('./routes/rangotsavForm.route');
+var valid = require('./routes/validForm.route');
 var userForm = require('./model/userForm.model');
 
 //---------------------------------------------------------------------
