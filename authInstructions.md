@@ -22,7 +22,7 @@
 
 ## 2. Account Activation
 
-*The route for activation will be {{URL}}/activation.
+* The route for activation will be {{URL}}/activation.
 * Once the user clicks on the email, the account will be activated and ready to use.
 * If there is any error on the backend part, or the verification link expires(15 minutes), an error with status code of 401 will be sent to the frontend.
 
@@ -59,7 +59,7 @@
 
 # Reset Password
 
-*The route is {{URL}}/resetpassword
+* The route is {{URL}}/resetpassword
 * Once the user clicks on the email, if it's expired or there is any error, an error with status code of 400 will be sent to frontend.
 * If there is no error, the token is matched with the resetPasswordLink field in the user's database.
 * If it matches, the following parameter is received from the frontend:
