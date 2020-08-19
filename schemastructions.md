@@ -1,6 +1,6 @@
 # Form Schema and validation INSTRUCTIONS
 
-####1. MTSE FORM SCHEMA
+#### 1. MTSE FORM SCHEMA
 * Body request will be passed as :
 ```json
 {
@@ -46,7 +46,7 @@
 * These Fields are validated. [Click me](#validation) to go to Validation section.
 * The route for the MTSE Form is http://localhost:5000/mtse
 
-####2. PUZZLE RACE FORM SCHEMA
+#### 2. PUZZLE RACE FORM SCHEMA
 * Body request will be passed as :
 ```json
 {
@@ -92,7 +92,7 @@
 * These Fields are validated. [Click me](#validation) to go to Validation section.
 * The route for the Puzzle Race Form is http://localhost:5000/puzzlerace
 
-####3. FREE HAND SKETCHING FORM SCHEMA
+#### 3. FREE HAND SKETCHING FORM SCHEMA
 * Body request will be passed as :
 ```json
 {
@@ -133,7 +133,7 @@
 * These Fields are validated. [Click me](#validation) to go to Validation section.
 * The route for the Free Hand Sketching Form is http://localhost:5000/fhs
 
-####4. CHESS FORM SCHEMA
+#### 4. CHESS FORM SCHEMA
 * Body request will be passed as :
 ```json
 {
@@ -175,7 +175,7 @@
 * These Fields are validated. [Click me](#validation) to go to Validation section.
 * The route for the Chess Form is http://localhost:5000/chess
 
-####5. RANGOTSAV FORM SCHEMA
+#### 5. RANGOTSAV FORM SCHEMA
 * Body request will be passed as :
 ```json
 {
@@ -214,7 +214,7 @@
 * These Fields are validated. [Click me](#validation) to go to Validation section.
 * The route for the Rangotsav Form is http://localhost:5000/rangotsav
 
-####6. CAREER COUNSELLING FORM SCHEMA
+#### 6. CAREER COUNSELLING FORM SCHEMA
 * Body request will be passed as :
 ```json
 {
@@ -236,7 +236,7 @@
 * These Fields are validated. [Click me](#validation) to go to Validation section.
 * The route for the Career Counselling Form is http://localhost:5000/career
 
-###Validation
+### Validation
 * used **express-validator** package
 * Every field of the form is required to be filled.
 * Value of the fields is accepted in the following format :
