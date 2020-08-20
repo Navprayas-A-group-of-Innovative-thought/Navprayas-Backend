@@ -2,15 +2,23 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from "dotenv";
+
 //for cross origin resource sharing
 import cors from 'cors'
 import config from './config'
-// using env values 
+
+// using env values
 dotenv.config();
 
 const app = express()
 app.use(cors())
 app.use(express.json())
+
+console.log(process.env)
+
+//Use bodyParser
+import bodyParser from 'body-parser'
+app.use(bodyParser.json())
 
 //---------------------------------------------------------------------
 // database 
@@ -26,6 +34,8 @@ const connection = mongoose.connection;
 connection.once('open', ()=>console.log("database connected"));
 //---------------------------------------------------------------------
 //import routing here
+const authRouter = require('./routes/auth.route')
+app.use('/',authRouter)
 
 //---------------------------------------------------------------------
 //Handle request here
@@ -39,6 +49,5 @@ app.get('/',(req, res)=>{
 
 
 // creating server and running
-const port = process.env.PORT || 5000;
-app.listen(port, ()=> console.log(`server is running at http://localhost:${port}`))
+app.listen(config.PORT, ()=> console.log(`server is running at http://localhost:${config.PORT}`))
 
