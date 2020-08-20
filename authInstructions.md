@@ -26,7 +26,7 @@
 * Once the user clicks on the email, the account will be activated and ready to use.
 * If there is any error on the backend part, or the verification link expires(15 minutes), an error with status code of 401 will be sent to the frontend.
 
-## 2. Log In
+## 3. Log In
 
 * From the frontend, request will be passed from the body as :
 
@@ -43,7 +43,7 @@
         * If it doesn't match, an error with status code of 400 will be sent to frontend.
         * If it matches, the user is signed in and a token(expiring in 7 days) is generated.
 
-# Forgot Password
+## 4. Forgot Password
 
 * From the frontend, request will be passed from the body as :
 
@@ -57,7 +57,7 @@
 * If user is found, a password reset link(expires in 10 min) is sent to the email of the user. 
 * Also, the resetPasswordLink field in the database is updated with the token generated.
 
-# Reset Password
+## 5. Reset Password
 
 * The route is {{URL}}/resetpassword
 * Once the user clicks on the email, if it's expired or there is any error, an error with status code of 400 will be sent to frontend.
