@@ -2,15 +2,23 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from "dotenv";
+
 //for cross origin resource sharing
 import cors from 'cors'
 import config from './config'
-// using env values 
+
+// using env values
 dotenv.config();
 
 const app = express()
 app.use(cors())
 app.use(express.json())
+
+console.log(process.env)
+
+//Use bodyParser
+import bodyParser from 'body-parser'
+app.use(bodyParser.json())
 
 //---------------------------------------------------------------------
 // database 
@@ -26,6 +34,7 @@ const connection = mongoose.connection;
 connection.once('open', ()=>console.log("database connected"));
 //---------------------------------------------------------------------
 //import routing here
+
 var mtseFormRouter = require('./routes/mtseForm.route');
 var puzzleRaceFormRouter = require('./routes/puzzleRaceForm.route');
 var fhsFormRouter = require('./routes/fhsForm.route');
@@ -34,6 +43,10 @@ var careercFormRouter = require('./routes/carrerForm.route');
 var rangotsavFormRouter = require('./routes/rangotsavForm.route');
 var valid = require('./routes/validForm.route');
 var userForm = require('./model/userForm.model');
+
+const authRouter = require('./routes/auth.route')
+app.use('/',authRouter)
+
 
 //---------------------------------------------------------------------
 //Handle request here
@@ -53,6 +66,5 @@ app.use('/career',careercFormRouter);                                  // reques
 app.use('/rangotsav',rangotsavFormRouter);                             // request on /rangotsav
 
 // creating server and running
-const port = process.env.PORT || 5000;
-app.listen(port, ()=> console.log(`server is running at http://localhost:${port}`))
+app.listen(config.PORT, ()=> console.log(`server is running at http://localhost:${config.PORT}`))
 
