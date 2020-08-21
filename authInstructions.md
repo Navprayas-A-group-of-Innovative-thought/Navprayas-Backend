@@ -71,6 +71,12 @@
 * This password in the database is now updated with the newPassword(hashed) and resetPasswordLink is again made empty.
 * If there's any error in updating the password, an error with status code of 400 will be sent to frontend.
 
+## 6. Protected Routes
+
+* All the form routes(GET and POST) have been made protected with a middleware.
+* When the user logs in, the generated token is passed in the header by the frontend. The backend verifies the token with the one stored in the database.
+    * If the user is verified, he/she can fill any form.
+    * If the user is not verified, an error of status code 401 is passed to the frontend with a message of Unauthorised User. The frontend can render a page asking the user to login or signup.
 
 
 ## Validations (using express-validator)
