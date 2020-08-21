@@ -4,13 +4,17 @@
  const { body, validationResult } = require('express-validator');
  const mongoose = require('mongoose');
  const mtseFormRouter = express.Router();
- const validUser = require('./validForm.route');
+const validUser = require('./validForm.route');
+const authRequired = require('../helpers/auth')
 
  //import userForm models
  const models = require('../model/userForm.model');
 
  // use application/json body-parser
- mtseFormRouter.use(bodyParser.json());
+mtseFormRouter.use(bodyParser.json());
+ 
+// authentication required
+mtseFormRouter.use(authRequired)
 
 // GET /mtse request
 mtseFormRouter.route('/')

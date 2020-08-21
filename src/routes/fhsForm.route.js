@@ -5,12 +5,16 @@ const { body, validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 const fhsFormRouter = express.Router();
 const validUser = require('./validForm.route');
+const authRequired = require('../helpers/auth')
 
 //import userForm models
 const models = require('../model/userForm.model');
 
 // use application/json body-parser
 fhsFormRouter.use(bodyParser.json());
+
+// authentication required
+fhsFormRouter.use(authRequired)
 
 // GET /fhs request
 fhsFormRouter.route('/')

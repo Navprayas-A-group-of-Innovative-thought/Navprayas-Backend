@@ -5,12 +5,16 @@ const { body, validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 const puzzleRaceFormRouter = express.Router();
 const validUser = require('./validForm.route');
+const authRequired = require('../helpers/auth')
 
 //import userForm models
 const models = require('../model/userForm.model');
 
 // use application/json body-parser
 puzzleRaceFormRouter.use(bodyParser.json());
+
+// authentication required
+puzzleRaceFormRouter.use(authRequired)
 
 // GET /puzzlerace request
 puzzleRaceFormRouter.route('/')

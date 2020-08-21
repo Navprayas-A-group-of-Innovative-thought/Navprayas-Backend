@@ -5,12 +5,16 @@ const { body, validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 const rangotsavFormRouter = express.Router();
 const validUser = require('./validForm.route');
+const authRequired = require('../helpers/auth')
 
 //import userForm models
 const models = require('../model/userForm.model');
 
 // use application/json body-parser
 rangotsavFormRouter.use(bodyParser.json());
+
+// authentication required
+rangotsavFormRouter.use(authRequired)
 
 // GET /rangotsav request
 rangotsavFormRouter.route('/')
