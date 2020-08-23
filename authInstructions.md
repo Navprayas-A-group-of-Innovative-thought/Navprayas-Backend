@@ -1,5 +1,8 @@
 # Authorisation and Authentication Instructions
 
+Please refer to [Issues Fixed](#issues-fixed) for the issues that have been fixed.
+
+
 ## 1. Sign Up
 
 * From the frontend, request will be passed from the body as : 
@@ -98,5 +101,16 @@
     * atleast one digit
     * atleast one special character
 * confirmPassword is **required** and should **match** with password
-* dob should be a **valid** date
+* dob should be a **valid** date(YYYY/MM/DD)
 * gender should be either **Male** or **Female**
+
+### Issues Fixed
+
+* Fixed error codes and messages.
+* Created a separate section with detailed process of generating activation link.
+* Increased the verification link expiration time to 30 minutes. If the user clicks on the link twice within the specified time, a response of 200 is sent to frontend with a message of Email already verified.
+* We aren't saving tokens on user's device. JWT does this all for us internally.
+* Included email in the payload while resetting password.
+* We are just checking if the email satisfies our validations. Also, user can login only if he/she has verified his account. If the user tries to signup with an email that doesn't exist, the email sending process will throw error and the user cannot signup.
+* Frontend can easily handle the issue of copy-pasting of confirmPassword.
+* A valid date format is YYYY/MM/DD.
