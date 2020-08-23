@@ -32,7 +32,7 @@ exports.validPuzzleRace = [
     check('user.education.class').isInt({min:5,max:10}).withMessage('should be from 5 to 10'),
     check('transactionDate').isDate().withMessage('Date should be in YYYY/MM/DD format'),
     check('registrationDate').isDate().withMessage('Date should be in YYYY/MM/DD format'),
-    check('category').isIn(['junior','hsenior']).withMessage('should be junior or senior'),
+    check('category').isIn(['junior','senior']).withMessage('should be junior or senior'),
     check('year').isInt().withMessage('four digit year eg. 2000')
 ]
 
