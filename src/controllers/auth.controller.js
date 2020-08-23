@@ -32,7 +32,7 @@ exports.signupController = (req, res) => {
   if (!errors.isEmpty()) {
     const firstError = errors.array().map((error) => error.msg)[0];
     return res.status(422).json({
-      errors: firstError,
+      errorDetails: firstError,
     });
   } else {
     User.findOne({
@@ -40,8 +40,8 @@ exports.signupController = (req, res) => {
     }).exec((err, user) => {
       //If user exists
       if (user) {
-        return res.status(400).json({
-          error: "Email is taken",
+        return res.status(403).json({
+          errorDetails: "User already exists",
         });
       }
     });
@@ -57,11 +57,11 @@ exports.signupController = (req, res) => {
       },
       process.env.JWT_ACCOUNT_ACTIVATION,
       {
-        expiresIn: "15m",
+        expiresIn: "30m",
       }
     );
 
-    //Message details here
+    //Mail details here
     let mailDetails = {
       from: "Navprayas <navprayas@do_not_reply.com>",
       to: email,
@@ -78,13 +78,12 @@ exports.signupController = (req, res) => {
     // send email from here
     mailTransporter.sendMail(mailDetails, function (err, data) {
       if (err) {
-        return res.status(400).json({
-          success: false,
-          errors: errorHandler(err),
+        return res.status(451).json({
+          errorDetails: errorHandler(err),
         });
       } else {
-        return res.json({
-          message: `Email has been sent to ${email}.`,
+        return res.status(250).json({
+          responseData: `Email has been sent to ${email}.`,
         });
       }
     });
@@ -93,56 +92,54 @@ exports.signupController = (req, res) => {
 
 // Activation and save to db
 exports.activationController = (req, res) => {
-  const { token } = req.body;
-  if (token) {
-    //Verify the token if valid or not or expired
-    jwt.verify(token, process.env.JWT_ACCOUNT_ACTIVATION, (err, decoded) => {
-      if (err) {
-        return res.status(401).json({
-          errors: "Token Expired. Please sign up again.",
-        });
-      } else {
-        //if valid, save to database
-        //Get email and password from token
-        const {
-          firstName,
-          lastName,
-          email,
-          password,
-          dob,
-          gender,
-        } = jwt.decode(token);
-        console.log(email);
+    const { token } = req.body;
+    if (token) {
+      //Verify the token if valid or not or expired
+      jwt.verify(token, process.env.JWT_ACCOUNT_ACTIVATION, (err, decoded) => {
+        if (err) {
+          return res.status(401).json({
+            errorDetails: "Token Expired. Please sign up again.",
+          });
+        } else {
+          //if valid, save to database
+          //Get email and password from token
+          const {
+            firstName,
+            lastName,
+            email,
+            password,
+            dob,
+            gender,
+          } = jwt.decode(token);
 
-        const user = new User({
-          firstName,
-          lastName,
-          email,
-          password,
-          dob,
-          gender,
-        });
-
-        user.save((err, user) => {
-          if (err) {
-            console.log("Save error", errorHandler(err));
-            return res.status(401).json({
-              errors: errorHandler(err),
-            });
-          } else {
-            return res.json({
-              success: true,
-              message: "Signup success",
-              user,
-            });
-          }
-        });
-      }
-    });
-  } else {
-    return res.json({
-      message: "Error occurred. Please try again",
-    });
+          const user = new User({
+            firstName,
+            lastName,
+            email,
+            password,
+            dob,
+            gender,
+          });
+          user.otherDetails.emailVerified = true
+          user.save((err, user) => {
+            if (err) {
+              console.log("Save error", errorHandler(err));
+              return res.status(500).json({
+                errorDetails: errorHandler(err),
+              });
+            } else {
+              return res.status(200).json({
+                errorDetails: "Signup success",
+                user,
+              });
+            }
+          });
+        }
+      });
+    } else {
+      return res.sttaus(500).json({
+        errorDetails: "Error occurred. Please try again",
+      });
   }
 };
 
@@ -160,14 +157,14 @@ exports.loginController = (req, res) => {
       email,
     }).exec((err, user) => {
       if (err || !user) {
-        return res.status(400).json({
-          errors: "User with that email does not exist. Please signup",
+        return res.status(404).json({
+          errorDetails: "User doesn't exist.",
         });
       }
       // authenticate
       if (!user.authenticate(password)) {
-        return res.status(400).json({
-          errors: "Email and password do not match",
+        return res.status(401).json({
+          errorDetails: "Incorrect email or password",
         });
       }
       // generate a token and send to client
@@ -182,7 +179,7 @@ exports.loginController = (req, res) => {
       );
       const { _id, firstName, lastName, email, dob, gender } = user;
 
-      return res.json({
+      return res.status(200).json({
         token,
         user: {
           _id,
@@ -209,7 +206,7 @@ exports.forgotPasswordController = (req, res) => {
   if (!errors.isEmpty()) {
     const firstError = errors.array().map((error) => error.msg)[0];
     return res.status(422).json({
-      errors: firstError,
+      errorDetails: firstError,
     });
   } else {
     User.findOne(
@@ -218,14 +215,15 @@ exports.forgotPasswordController = (req, res) => {
       },
       (err, user) => {
         if (err || !user) {
-          return res.status(400).json({
-            error: "User with that email does not exist",
+          return res.status(404).json({
+            errorDetails: "User does not exist",
           });
         }
 
         const token = jwt.sign(
           {
             _id: user._id,
+            email
           },
           process.env.JWT_RESET_PASSWORD,
           {
@@ -253,21 +251,20 @@ exports.forgotPasswordController = (req, res) => {
           (err, success) => {
             if (err) {
               console.log("RESET PASSWORD LINK ERROR", err);
-              return res.status(400).json({
-                error:
+              return res.status(500).json({
+                errorDetails:
                   "Database connection error on user password forgot request",
               });
             } else {
               // send email from here
               mailTransporter.sendMail(mailDetails, function (err, data) {
                 if (err) {
-                  return res.status(400).json({
-                    success: false,
-                    errors: errorHandler(err),
+                  return res.status(451).json({
+                    errorDetails: errorHandler(err),
                   });
                 } else {
-                  return res.json({
-                    message: `Email has been sent to ${email}.`,
+                  return res.status(250).json({
+                    responseData: `Email has been sent to ${email}.`,
                   });
                 }
               });
@@ -287,7 +284,7 @@ exports.resetPasswordController = (req, res) => {
   if (!errors.isEmpty()) {
     const firstError = errors.array().map((error) => error.msg)[0];
     return res.status(422).json({
-      errors: firstError,
+      errorDetails: firstError,
     });
   } else {
     if (resetPasswordLink) {
@@ -296,8 +293,8 @@ exports.resetPasswordController = (req, res) => {
         decoded
       ) {
         if (err) {
-          return res.status(400).json({
-            error: "Expired link. Try again",
+          return res.status(410).json({
+            errorDetails: "Expired link. Try again",
           });
         }
 
@@ -307,8 +304,8 @@ exports.resetPasswordController = (req, res) => {
           },
           (err, user) => {
             if (err || !user) {
-              return res.status(400).json({
-                error: "Something went wrong. Try later",
+              return res.status(500).json({
+                errorDetails: "Something went wrong. Try later",
               });
             }
 
@@ -322,11 +319,11 @@ exports.resetPasswordController = (req, res) => {
             user.save((err, result) => {
               if (err) {
                 return res.status(400).json({
-                  error: "Error resetting user password",
+                  errorDetails: "Error resetting user password",
                 });
               }
-              res.json({
-                message: `Great! Now you can login with your new password`,
+              res.status(200).json({
+                responseData: `Great! Now you can login with your new password`,
               });
             });
           }
