@@ -148,8 +148,8 @@ exports.loginController = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const firstError = errors.array().map((error) => error.msg)[0];
-    return res.status(422).json({
-      errors: firstError,
+    return res.status(404).json({
+      errorDetails: firstError,
     });
   } else {
     // check if user exist
