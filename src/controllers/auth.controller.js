@@ -129,7 +129,7 @@ exports.activationController = (req, res) => {
               });
             } else {
               return res.status(200).json({
-                errorDetails: "Signup success",
+                responseData: "Signup success",
                 user,
               });
             }
