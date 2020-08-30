@@ -65,13 +65,15 @@ exports.signupController = (req, res) => {
     let mailDetails = {
       from: "Navprayas <navprayas@do_not_reply.com>",
       to: email,
-      subject: "Account Activation Link",
+      subject: "Email Verification - Navprayas",
       html: `
-                <h1>Please use the following to activate your account</h1>
+                <p>Hello ${firstName},</p><br>
+                <p>Thank you for signing up on <a href="http://navprayas.in">Navprayas</a>.</p><br>
+                <p>In order to activate your Navprayas account, we need to verify your email address. Please use the below link to confirm your email address and complete the signup process.<p><br>
                 <p>${process.env.CLIENT_URL}/users/activate/${token}</p>
-                <hr />
-                <p>This email may contain sensitive information</p>
-                <p>${process.env.CLIENT_URL}</p>
+                <br>
+                <p>Thank You</p>
+                <p>Navprayas - A Group of Innovative Thoughts</p>
             `,
     };
 
@@ -234,13 +236,15 @@ exports.forgotPasswordController = (req, res) => {
         let mailDetails = {
           from: "Navprayas <navprayas@do_not_reply.com>",
           to: email,
-          subject: `Password Reset link`,
+          subject: `Password Reset Link - Navprayas`,
           html: `
-                    <h1>Please use the following link to reset your password</h1>
+                    <p>Hello ,</p><br>
+                    <p>It happens that we often forget our password. Don't worry, we at <a href="http://navprayas.in">Navprayas</a> are here to assist you..</p><br>
+                    <p>In order to reset your Navprayas account password, we need to verify if it's nobody but you trying to reset your password. Please use the below link to confirm your email address and complete the reset password process.<p><br>
                     <p>${process.env.CLIENT_URL}/users/password/reset/${token}</p>
-                    <hr />
-                    <p>This email may contain sensitive information</p>
-                    <p>${process.env.CLIENT_URL}</p>
+                    <br>
+                    <p>Thank You</p>
+                    <p>Navprayas - A Group of Innovative Thoughts</p>
                 `,
         };
 
