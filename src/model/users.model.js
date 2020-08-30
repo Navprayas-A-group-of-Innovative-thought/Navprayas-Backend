@@ -41,9 +41,6 @@ const userSchema = new mongoose.Schema(
                 class: {
                     type: Number,
                 },
-                year: {
-                    type: Number
-                },
                 schoolOrUniv: {
                     type: String,
                 },
