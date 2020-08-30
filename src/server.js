@@ -35,6 +35,7 @@ connection.once('open', ()=>console.log("database connected"));
 //---------------------------------------------------------------------
 //import routing here
 
+
 var mtseFormRouter = require('./routes/mtseForm.route');
 var puzzleRaceFormRouter = require('./routes/puzzleRaceForm.route');
 var fhsFormRouter = require('./routes/fhsForm.route');
@@ -45,9 +46,10 @@ var valid = require('./routes/validForm.route');
 var userForm = require('./model/userForm.model');
 
 const authRouter = require('./routes/auth.route')
-app.use('/',authRouter)
+app.use('/', authRouter)
 
-
+const profileRouter = require('./routes/profile.route')
+app.use('/',profileRouter)
 //---------------------------------------------------------------------
 //Handle request here
 
