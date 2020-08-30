@@ -9,7 +9,7 @@
 * The backend will extract the user id and search for the user in the database.
     * If the user is not found, an error with status code of 404 with error message of User doesn't exist is passed to the frontend.
     * If the user is found, the following details are passed to the frontend :
-    ```json
+    ```
     {
         firstName: firstName,
         lastName: lastName,
