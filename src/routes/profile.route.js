@@ -8,8 +8,8 @@ const { profileController, editController } = require("../controllers/profile.co
 
 // All profile related routers here
 router.use(authRequired)
-router.get("/user/profile", profileController);
-router.get('/user/profile/edit', profileController)
-router.post('/user/profile/edit',editController)
+router.get("/profile", profileController);
+router.get('/profile/edit', profileController)
+router.post('/profile/edit',editController)
 
 module.exports = router;

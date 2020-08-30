@@ -49,7 +49,7 @@ const authRouter = require('./routes/auth.route')
 app.use('/', authRouter)
 
 const profileRouter = require('./routes/profile.route')
-app.use('/',profileRouter)
+app.use('/user/',profileRouter)
 //---------------------------------------------------------------------
 //Handle request here
 
