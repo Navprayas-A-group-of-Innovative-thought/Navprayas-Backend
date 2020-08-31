@@ -3,6 +3,7 @@ const User = require("../model/users.model");
 const _ = require("lodash");
 const { errorHandler } = require("../helpers/dbErrorHandling");
 const jwt = require("jsonwebtoken");
+const { validationResult } = require("express-validator");
 
 // Profile router here
 exports.profileController = (req, res) => {
@@ -118,4 +119,54 @@ exports.editController = (req, res) => {
       });
     }
   });
+};
+
+exports.passwordController = (req, res) => {
+  const token = req.headers.authorization.split(" "); // extracting token from header
+  const { _id } = jwt.decode(token[1]); // decoding _id from token
+  const { oldPassword, newchangePassword, confirmchangePassword } = req.body; //get oldPassword, newchangePassword, confirmchangePassword from the body
+  const errors = validationResult(req);         //validate the passwords
+  if (!errors.isEmpty()) {                      // if error
+    const firstError = errors.array().map((error) => error.msg)[0];
+    return res.status(422).json({
+      errorDetails: firstError,
+    });
+  } else {                                      // if no error
+    User.findOne({ _id }).exec((err, user) => {                 // search for user in database
+      if (err || !user) {                                       // if no user
+        return res.status(404).json({ errorDetails: "User doesn't exist." });
+      } else {                                                  // if user exists
+        if (!user.authenticate(oldPassword)) {                  // compare oldPassword with the password in database
+          return res.status(401).json({
+            errorDetails: "Incorrect old password",
+          });
+        } else {                                                // check if password and confirm password is same
+          if (newchangePassword == confirmchangePassword) {     // if same, update the password
+            const updatedFields = {
+              password: newchangePassword,
+            };
+            user = _.extend(user, updatedFields);
+            user.save((err, result) => {                        // trying to save updated fields in database
+              if (err) {                                        // if error
+                res
+                  .status(400)
+                  .json({ errorDetails: "Error changing password" });
+              } else {                                          // if no error
+                res
+                  .status(200)
+                  .json({ responseData: "Password changed successfully" });
+              }
+            });
+          } else {                                              // if password and confirm password don't match
+            res
+              .status(400)
+              .json({
+                errorDetails:
+                  "Confrim Password doesn't match with New Password.",
+              });
+          }
+        }
+      }
+    });
+  }
 };
