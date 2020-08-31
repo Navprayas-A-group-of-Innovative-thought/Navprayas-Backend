@@ -8,7 +8,7 @@
     * [Node](https://nodejs.org/en/)
     * [Express](https://expressjs.com/)
     * [Mongoose](https://mongoosejs.com/)
-    * [Passport](http://www.passportjs.org/)
+    * [JWT](https://jwt.io/)
 
 <h1>How to run</h1>
 
