@@ -69,3 +69,30 @@
     ```
     * The above fields will be updated in the database. If there is any error while saving in the database, an error with status code of 500 with error details will be sent to the frontend.
     * If there is no error, responseData with status code of 200 with message will be sent to frontend.
+
+
+## 3. Change Password
+
+* The route(POST) will be {{URL}}**/user/password/change**.
+* Only authorised requests will be accepted since the route has been protected else error will be passed with status code 401 and message Please sign in.
+* Refer to [Protected Routes](https://github.com/Navprayas-A-group-of-Innovative-thought/Navprayas-Backend/blob/master/authInstructions.md#6-protected-routes) for instructions regarding authorised requests. 
+* From the frontend, authorisation token will be passed in the header.
+* Following fields have to be passed from the frontend in the body :
+```json
+{
+    "oldPassword" : "kuchhbhi1_",
+    "newchangePassword":"changeKiye1@",
+    "confirmchangePassword":"changeKiye1@"
+}
+```
+* The incoming fields are validated against the [validators](https://github.com/Navprayas-A-group-of-Innovative-thought/Navprayas-Backend/blob/master/authInstructions.md#validations).
+    * If there is an error, error with status code 422 and errorDetails will be sent to frontend.
+    * If there is no error, the user is searched in the database.
+        * If the user is not found, error with status code 404 and errorDetails is passed to the frontend.
+        * If user is found, the oldPassword coming from the body is compared with the password saved in the database.
+            * If the passwords don't match, error with status code 401 and errorDetails is sent to frontend.
+            * If they match, the incoming newchangePassword and confirmchangePassword is matched against each other.
+                * If they don't match, error with status code of 401 and errorDetails is passed to frontend.
+                * If they match, the password in the database is updated with the incoming newchangePassword.
+                    * If there is any error in updating the password, error with status code 400 and errorDetails is sent to frontend.
+                    * If there is no error, responseData with status code of 200 and message is passed to the frontend.
