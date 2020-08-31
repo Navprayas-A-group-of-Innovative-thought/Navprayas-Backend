@@ -39,3 +39,21 @@ exports.resetPasswordValidator = [
       "Must contain atleast one lower case, one uppercase, one special character and one digit."
     ),
 ];
+
+// Change Password Validation
+exports.changePasswordValidator = [
+  check("oldPassword", "Old password is required")
+    // .matches(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$/)
+    .notEmpty()
+    .withMessage(
+      "Must contain atleast one lower case, one uppercase, one special character and one digit."
+  ),
+  check('newchangePassword', 'Password is required.')
+    // .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)
+    .notEmpty()
+    .withMessage(
+      "Must contain atleast one lower case, one uppercase, one special character and one digit."
+    ),
+
+  
+]
