@@ -18,6 +18,7 @@
         gender: gender,
         fatherName: fatherName,
         motherName: motherName,
+        contact: contact,
         class: grade,
         year: year,
         schoolOrUniv: schoolOrUniv,
@@ -51,6 +52,7 @@
         lastName
         fatherName
         motherName
+        contact
         class
         year
         schoolOrUniv
