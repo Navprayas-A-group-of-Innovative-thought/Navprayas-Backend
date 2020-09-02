@@ -17,7 +17,7 @@ const {changePasswordValidator} = require("../validation/valid")
 router.use(authRequired);
 router.get("/profile", profileController);
 router.get("/profile/edit", profileController);
-router.post("/profile/edit", editController);
-router.post("/password/change",changePasswordValidator, passwordController);
+router.put("/profile/edit", editController);
+router.put("/password/change",changePasswordValidator, passwordController);
 
 module.exports = router;
