@@ -103,7 +103,12 @@ const userSchema = new mongoose.Schema(
             },
             contact: {
                 type: Number,
-                max: 10
+                validate: {
+                    validator: function (value) {
+                        return /^(?:(?:\+|0{0,2})91(\s*[\ -]\s*)?|[0]?)?[6789]\d{9}|(\d[ -]?){10}\d$/.test(value)
+                    },
+                    message: props => `${props.value} is a not valid phone number.`
+                }
             }
         },
         //profile ends here -----------------------------------------
