@@ -39,7 +39,7 @@
 
 ## 2. Update Profile
 
-* The route(GET/POST) will be {{URL}}**/user/profile/edit**.
+* The route(GET/PUT) will be {{URL}}**/user/profile/edit**.
 * Only authorised requests will be accepted since the route has been protected else error will be passed with status code 401 and message Please sign in.
 * Refer to [Protected Routes](https://github.com/Navprayas-A-group-of-Innovative-thought/Navprayas-Backend/blob/master/authInstructions.md#6-protected-routes) for instructions regarding authorised requests.
 * The GET request will work similarly as the profile page route since only the data is to be sent to the frontend to be rendered at the Edit Profile Page.
@@ -75,7 +75,7 @@
 
 ## 3. Change Password
 
-* The route(POST) will be {{URL}}**/user/password/change**.
+* The route(PUT) will be {{URL}}**/user/password/change**.
 * Only authorised requests will be accepted since the route has been protected else error will be passed with status code 401 and message Please sign in.
 * Refer to [Protected Routes](https://github.com/Navprayas-A-group-of-Innovative-thought/Navprayas-Backend/blob/master/authInstructions.md#6-protected-routes) for instructions regarding authorised requests. 
 * From the frontend, authorisation token will be passed in the header.
