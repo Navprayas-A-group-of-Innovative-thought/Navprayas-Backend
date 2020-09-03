@@ -48,6 +48,9 @@ var userForm = require('./model/userForm.model');
 const authRouter = require('./routes/auth.route')
 app.use('/', authRouter)
 
+const faqRouter = require('./routes/faq.route')
+app.use('/faq',faqRouter)
+
 const profileRouter = require('./routes/profile.route')
 app.use('/user/', profileRouter)
 

@@ -14,7 +14,7 @@ const auth = (req, res, next) => {
     return res
       .status(401)
       .json({
-        errorDetails: "You are not signed in. Please login   to continue",
+        errorDetails: "You are not signed in. Please login to continue",
       });
   }
 };
