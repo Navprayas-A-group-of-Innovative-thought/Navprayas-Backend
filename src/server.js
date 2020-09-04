@@ -51,6 +51,9 @@ app.use('/', authRouter)
 const faqRouter = require('./routes/faq.route')
 app.use('/faq',faqRouter)
 
+const eventScheduleRouter = require('./routes/eventSchedule.route')
+app.use('/eventschedule',eventScheduleRouter)
+
 const profileRouter = require('./routes/profile.route')
 app.use('/user/', profileRouter)
 
