@@ -56,22 +56,15 @@ exports.updateController = (req, res, next) => {
 
 // exports deleteController ( to delete a particular FAQ holding the given _id in the request parameter )
 exports.deleteController = (req, res, next) => {
-    FaqModel.findById(req.params.Id)                                        // find a specific faq object with the given _id
-        .then((doc) => {
-            if (doc != null) {                                              // check -- is the faq available?
-                doc.remove();                                               // if yes, delete that faq from database
-                doc.save()                                                  //  and save the faq collection
-                    .then((doc) => {
-                        res.statusCode = 200;                                // if success : response with OK
-                        res.setHeader('Content-Type', 'application/json');
-                        res.json(doc);
-                    }, (err) => next(err));                                  // if failed : throw error
-            }
-            else {
-                err = new Error('faq ' + req.params.Id + ' not found');     // if faq not available in the database
-                err.status = 404;                                           // throw error msg "NOT FOUND"
-                return next(err);
-            }
-        }, (err) => next(err))
-        .catch((err) => next(err))
+    FaqModel.findByIdAndRemove(req.params.Id, (err, faq) => {
+        // As always, handle any potential errors:
+        if (err) return res.status(500).send(err);
+        // We'll create a simple object to send back with a message and the id of the document that was removed
+        // You can really do this however you want, though.
+        const response = {
+            message: "eventSchedule successfully deleted",
+            id: faq._id
+        };
+        return res.status(200).send(response);
+    })                                    
 };
