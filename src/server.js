@@ -59,9 +59,12 @@ app.use('/user/', profileRouter)
 
 const contactRouter = require('./routes/contact.route')
 app.use('/', contactRouter)
-//---------------------------------------------------------------------
-//Handle request here
 
+const webinarRouter = require('./routes/webinar.route')
+app.use('/webinar/', webinarRouter)
+//---------------------------------------------------------------------
+
+//Handle request here
 app.get('/',(req, res)=>{
     res.json({
         "msg": "Navprayas Backend is Up",
