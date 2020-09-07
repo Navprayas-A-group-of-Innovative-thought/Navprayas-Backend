@@ -29,6 +29,7 @@ exports.profileController = (req, res) => {
       var grade = user.profile.education.grade;
       var year = user.profile.education.year;
       var schoolOrUniv = user.profile.education.schoolorUniv;
+      var instituteName = user.profile.education.instituteName;
       var board = user.profile.education.board;
       var houseNumber = user.profile.address.houseNumber;
       var addressLine1 = user.profile.address.addressLine1;
@@ -54,6 +55,7 @@ exports.profileController = (req, res) => {
         grade: grade,
         year: year,
         schoolOrUniv: schoolOrUniv,
+        instituteName: instituteName,
         board: board,
         houseNumber: houseNumber,
         addressLine1: addressLine1,
@@ -92,6 +94,7 @@ exports.editController = (req, res) => {
       user.profile.education.grade = req.body.grade;
       user.profile.education.year = req.body.year;
       user.profile.education.schoolOrUniv = req.body.schoolOrUniv;
+      user.profile.education.instituteName = req.body.instituteName;
       user.profile.education.board = req.body.board;
       user.profile.address.houseNumber = req.body.houseNumber;
       user.profile.address.addressLine1 = req.body.addressLine1;
