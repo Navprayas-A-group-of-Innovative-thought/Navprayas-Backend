@@ -26,7 +26,7 @@ exports.profileController = (req, res) => {
       var fatherName = user.profile.fatherName;
       var motherName = user.profile.motherName;
       var contact = user.profile.contact;
-      var grade = user.profile.education.class;
+      var grade = user.profile.education.grade;
       var year = user.profile.education.year;
       var schoolOrUniv = user.profile.education.schoolorUniv;
       var board = user.profile.education.board;
@@ -51,7 +51,7 @@ exports.profileController = (req, res) => {
         fatherName: fatherName,
         motherName: motherName,
         contact:contact,
-        class: grade,
+        grade: grade,
         year: year,
         schoolOrUniv: schoolOrUniv,
         board: board,
@@ -89,7 +89,7 @@ exports.editController = (req, res) => {
       user.profile.fatherName = req.body.fatherName;
       user.profile.motherName = req.body.motherName;
       user.profile.contact = req.body.contact;
-      user.profile.education.grade = req.body.class;
+      user.profile.education.grade = req.body.grade;
       user.profile.education.year = req.body.year;
       user.profile.education.schoolOrUniv = req.body.schoolOrUniv;
       user.profile.education.board = req.body.board;
