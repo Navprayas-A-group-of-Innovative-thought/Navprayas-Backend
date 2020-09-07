@@ -19,9 +19,10 @@
         fatherName: fatherName,
         motherName: motherName,
         contact: contact,
-        class: grade,
+        grade: grade,
         year: year,
         schoolOrUniv: schoolOrUniv,
+        instituteName: instituteName,
         board: board,
         houseNumber: houseNumber,
         addressLine1: addressLine1,
@@ -53,9 +54,10 @@
         fatherName
         motherName
         contact
-        class
+        grade
         year
         schoolOrUniv
+        instituteName
         board
         houseNumber
         addressLine1
