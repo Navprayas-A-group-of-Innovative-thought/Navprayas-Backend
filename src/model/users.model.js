@@ -44,6 +44,9 @@ const userSchema = new mongoose.Schema(
                 schoolOrUniv: {
                     type: String,
                 },
+                instituteName: {
+                    type: String,
+                },
                 board: {
                     type: String
                 }
@@ -72,6 +75,12 @@ const userSchema = new mongoose.Schema(
                 },
                 pincode:{
                     type: Number,
+                    validate: {
+                        validator: function (value) {
+                            return /^[0-9]{6}$/.test(value)
+                        },
+                        message: props => `${props.value} is not a valid Pincode.`
+                    }
                 },
                 country: {
                     type: String,
