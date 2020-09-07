@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema(
         profile: {
             // education object from here --------------------
             education: {
-                class: {
+                grade: {
                     type: Number,
                 },
                 schoolOrUniv: {
@@ -72,7 +72,6 @@ const userSchema = new mongoose.Schema(
                 },
                 pincode:{
                     type: Number,
-                    max: 6
                 },
                 country: {
                     type: String,
