@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-
 // Schema for Webinar
 const webinarSchema = new mongoose.Schema({
   title: {
@@ -16,14 +15,19 @@ const webinarSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  platform: {
+    type: String,
+    required: true,
+  },
   link: {
     type: String,
     required: true,
   },
   speakers: {
     type: Array,
-    required: true
+    required: true,
   },
 });
+
 
 module.exports = mongoose.model("Webinar", webinarSchema);
