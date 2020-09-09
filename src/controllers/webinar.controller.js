@@ -28,12 +28,14 @@ exports.webinarController = (req, res) => {
         var title = webinar.title;
         var date = webinar.date;
         var time = webinar.time;
+        var platform = webinar.platform;
         var link = webinar.link;
         var speakers = webinar.speakers;
         res.status(200).json({
           title: title,
           date: date,
           time: time,
+          platform: platform,
           link: link,
           speakers: speakers,
         });
@@ -44,11 +46,10 @@ exports.webinarController = (req, res) => {
 
 // Create New Webinar Router here
 exports.addWebinarController = (req, res) => {
-  const { title, date, time, link, speakers } = req.body; // get details from body
+  const { title, date, time, platform, link, speakers } = req.body; // get details from body
   const errors = validationResult(req); // validating against validators
   if (!errors.isEmpty()) {
     // if error
-    // If errors
     const firstError = errors.array().map((error) => error.msg)[0];
     return res.status(422).json({
       errorDetails: firstError,
@@ -59,6 +60,7 @@ exports.addWebinarController = (req, res) => {
       title,
       date,
       time,
+      platform,
       link,
       speakers,
     });
@@ -92,6 +94,7 @@ exports.editWebinarController = (req, res) => {
       webinar.title = req.body.title;
       webinar.date = req.body.date;
       webinar.time = req.body.time;
+      webinar.platform = req.body.platform;
       webinar.link = req.body.link;
       webinar.speakers = req.body.speakers;
       webinar.save((err, webinar) => {
