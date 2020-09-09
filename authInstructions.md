@@ -95,14 +95,14 @@ Please refer to [Issues Fixed](#issues-fixed) for the issues that have been fixe
 
 * firstName is **required**.
 * email is **required**.
-* password is **required** and it should contain:
-    * atleast one lowercase letter
-    * atleast one uppercase letter
-    * atleast one digit
-    * atleast one special character
+* password of **length 8-20** characters is **required** and it should contain:
+    * atleast **one lowercase letter**
+    * atleast **one uppercase letter**
+    * atleast **one digit**
+    * atleast **one special character** from **@,#,$,%,&,_**
 * confirmPassword is **required** and should **match** with password
 * dob should be a **valid** date(YYYY/MM/DD)
-* gender should be either **Male** or **Female**
+* gender should be either **Male** , **Female** , **Other** or **Prefer Not to Say**
 
 ### Issues Fixed
 
