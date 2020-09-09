@@ -39,6 +39,7 @@ exports.profileController = (req, res) => {
       var district = user.profile.address.district;
       var city = user.profile.address.city;
       var pincode = user.profile.address.pincode;
+      var state = user.profile.address.state;
       var country = user.profile.address.country;
       var facebookLink = user.profile.socialInfo.facebookLink;
       var githubLink = user.profile.socialInfo.githubLink;
@@ -65,6 +66,7 @@ exports.profileController = (req, res) => {
         district: district,
         city: city,
         pincode: pincode,
+        state:state,
         country: country,
         facebookLink: facebookLink,
         linkedinLink: linkedinLink,
@@ -104,6 +106,7 @@ exports.editController = (req, res) => {
       user.profile.address.district = req.body.district;
       user.profile.address.city = req.body.city;
       user.profile.address.pincode = req.body.pincode;
+      user.profile.address.state = req.body.state;
       user.profile.address.country = req.body.country;
       user.profile.socialInfo.facebookLink = req.body.facebookLink;
       user.profile.socialInfo.githubLink = req.body.githubLink;
@@ -137,6 +140,7 @@ exports.editController = (req, res) => {
           var district = user.profile.address.district;
           var city = user.profile.address.city;
           var pincode = user.profile.address.pincode;
+          var state = user.profile.address.state
           var country = user.profile.address.country;
           var facebookLink = user.profile.socialInfo.facebookLink;
           var githubLink = user.profile.socialInfo.githubLink;
@@ -164,6 +168,7 @@ exports.editController = (req, res) => {
             district: district,
             city: city,
             pincode: pincode,
+            state:state,
             country: country,
             facebookLink: facebookLink,
             linkedinLink: linkedinLink,
