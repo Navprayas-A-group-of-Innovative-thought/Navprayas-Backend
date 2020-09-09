@@ -6,54 +6,76 @@ exports.validSignup = [
   check("firstName", "First Name is required.").notEmpty(),
   check("email").isEmail().withMessage("Must be a valid email address"),
   check("password", "Password is required")
-    // .matches(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$/)
-    .notEmpty()
+    .trim()
+    .matches(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&_])(?=\S+$).{8,20}$/)
     .withMessage(
-      "Must contain atleast one lower case, one uppercase, one special character and one digit."
+      "The password must be 8 to 20 characters long and must contain atleast one lower case, one uppercase, one special character(@,#,$,%,&,_) and one digit."
     ),
-  check("confirmPassword", "Passwords do not match."),
-  check("dob").trim().isDate().withMessage("Date should be in YYYY/MM/DD format"),
-  check("gender").isIn(["Male", "Female"]),
+  check("confirmPassword")
+    .notEmpty()
+    .withMessage("Confirm Password cannot be empty.")
+    .trim()
+    .custom(async (confirmPassword, { req }) => {
+      const password = req.body.password;
+      if (password !== confirmPassword) {
+        throw new Error("Password and Confirm Password do not match.");
+      }
+    }),
+  check("dob")
+    .trim()
+    .isDate()
+    .withMessage("Date should be in YYYY/MM/DD format"),
+  check("gender").isIn(["Male", "Female", "Other", "Prefer Not to Say"]),
 ];
 
 //Login Validation
 exports.validLogin = [
-    check('email').isEmail().withMessage('Must be a valid email address'),
-  check('password', 'Password is required.')
-    // .matches(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$/)
+  check("email").isEmail().withMessage("Must be a valid email address"),
+  check("password", "Password is required.")
+    .trim()
+    .matches(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&_])(?=\S+$).{8,20}$/)
+    .withMessage(
+      "The password must be 8 to 20 characters long and must contain atleast one lower case, one uppercase, one special character(@,#,$,%,&,_) and one digit."
+    ),
 ];
 
 //Forgot Password Validation
 exports.forgotPasswordValidator = [
-    check('email')
-        .isEmail()
-        .withMessage('Must be a valid email address')
+  check("email").isEmail().withMessage("Must be a valid email address"),
 ];
 
 //Reset Password Validation
 exports.resetPasswordValidator = [
-    check('newPassword', 'Password is required.')
-    // .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)
-    .notEmpty()
+  check("newPassword", "Password is required.")
+    .trim()
+    .matches(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&_])(?=\S+$).{8,20}$/)
     .withMessage(
-      "Must contain atleast one lower case, one uppercase, one special character and one digit."
-    ),
+      "The password must be 8 to 20 characters long and must contain atleast one lower case, one uppercase, one special character(@,#,$,%,&,_) and one digit."
+    )
 ];
 
 // Change Password Validation
 exports.changePasswordValidator = [
   check("oldPassword", "Old password is required")
-    // .matches(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$/)
-    .notEmpty()
-    .withMessage(
-      "Must contain atleast one lower case, one uppercase, one special character and one digit."
+  .trim()
+  .matches(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&_])(?=\S+$).{8,20}$/)
+  .withMessage(
+    "Old password was 8 to 20 characters long and had atleast one lower case, one uppercase, one special character(@,#,$,%,&,_) and one digit."
   ),
-  check('newchangePassword', 'Password is required.')
-    // .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)
+  check("newchangePassword", "Password is required.")
+  .trim()
+  .matches(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&_])(?=\S+$).{8,20}$/)
+  .withMessage(
+    "The password must be 8 to 20 characters long and must contain atleast one lower case, one uppercase, one special character(@,#,$,%,&,_) and one digit."
+  ),
+  check("confirmchangePassword")
     .notEmpty()
-    .withMessage(
-      "Must contain atleast one lower case, one uppercase, one special character and one digit."
-    ),
-
-  
-]
+    .withMessage("Confirm Password cannot be empty.")
+    .trim()
+    .custom(async (confirmchangePassword, { req }) => {
+      const password = req.body.newchangePassword;
+      if (password !== confirmchangePassword) {
+        throw new Error("Password and Confirm Password do not match.");
+      }
+    }),
+];
