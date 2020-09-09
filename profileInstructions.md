@@ -31,6 +31,7 @@
         district: district,
         city: city,
         pincode: pincode,
+        state: state,
         country: country,
         facebookLink: facebookLink,
         linkedinLink: linkedinLink,
@@ -66,6 +67,7 @@
         district
         city
         pincode
+        state
         country
         facebookLink
         linkedinLink
