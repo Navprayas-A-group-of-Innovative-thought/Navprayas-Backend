@@ -85,6 +85,9 @@ const userSchema = new mongoose.Schema(
                         message: props => `${props.value} is not a valid Pincode.`
                     }
                 },
+                state: {
+                    type: String,  
+                },
                 country: {
                     type: String,
                     default: 'India'
