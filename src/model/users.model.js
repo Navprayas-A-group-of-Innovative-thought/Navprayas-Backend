@@ -38,11 +38,14 @@ const userSchema = new mongoose.Schema(
         profile: {
             // education object from here --------------------
             education: {
+                schoolOrUniv: {
+                    type: String,
+                },
                 grade: {
                     type: Number,
                 },
-                schoolOrUniv: {
-                    type: String,
+                year: {
+                    type: Number,
                 },
                 instituteName: {
                     type: String,
