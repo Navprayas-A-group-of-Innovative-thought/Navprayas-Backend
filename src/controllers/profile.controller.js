@@ -4,6 +4,7 @@ const _ = require("lodash");
 const { errorHandler } = require("../helpers/dbErrorHandling");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
+const { urlencoded } = require("body-parser");
 
 // Profile router here
 exports.profileController = (req, res) => {
