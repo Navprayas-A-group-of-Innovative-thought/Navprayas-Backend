@@ -47,7 +47,7 @@ exports.contactController = (req, res) => {
           to: email,
           subject: "Contact Form Submission - Navprayas",
           html: `
-                        <p>Hello <strong>${name}</strong>,</p><br>
+                        <p>Hello <strong>${name}</strong>,</p>
                         <p>Thank you for contacting <a href="http://navprayas.in">Navprayas</a>.</p>
                         <p>Your form submission details: </p>
                         <ul>
@@ -59,8 +59,7 @@ exports.contactController = (req, res) => {
                         </ul>
                         <p>Our team will get in touch with you soon via email. Please keep an eye on it.<p>
                         <br>
-                        <p>Thank You</p>
-                        <p>Navprayas - A Group of Innovative Thoughts</p>
+                        <p>Thanks and regards<br>Navprayas<br>(A Group of Innovative Thoughts)</p>
                     `,
         };
 
