@@ -27,6 +27,14 @@ exports.validWebinar = checkSchema({
             errorMessage: 'Time must be string.'
         }
     },
+    platform: {
+        notEmpty: {
+            errorMessage: 'Platform of webinar is required.'
+        },
+        isString: {
+            errorMessage: 'Platform must be a string.'
+        }
+    },
     link: {
         notEmpty: {
             errorMessage: 'Webinar link is required.'
