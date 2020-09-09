@@ -67,13 +67,12 @@ exports.signupController = (req, res) => {
       to: email,
       subject: "Email Verification - Navprayas",
       html: `
-                <p>Hello ${firstName},</p><br>
-                <p>Thank you for signing up on <a href="http://navprayas.in">Navprayas</a>.</p><br>
-                <p>In order to activate your Navprayas account, we need to verify your email address. Please use the below link to confirm your email address and complete the signup process.<p><br>
+                <p>Hello ${firstName},</p>
+                <p>Thank you for signing up on <a href="http://navprayas.in">Navprayas</a>.</p>
+                <p>In order to activate your Navprayas account, we need to verify your email address. Please use the below link to confirm your email address and complete the signup process.<p>
                 <p>${process.env.CLIENT_URL}/users/activate/${token}</p>
                 <br>
-                <p>Thank You</p>
-                <p>Navprayas - A Group of Innovative Thoughts</p>
+                <p>Thanks and regards<br>Navprayas<br>(A Group of Innovative Thoughts)</p>
             `,
     };
 
@@ -238,13 +237,12 @@ exports.forgotPasswordController = (req, res) => {
           to: email,
           subject: `Password Reset Link - Navprayas`,
           html: `
-                    <p>Hello ,</p><br>
-                    <p>It happens that we often forget our password. Don't worry, we at <a href="http://navprayas.in">Navprayas</a> are here to assist you..</p><br>
-                    <p>In order to reset your Navprayas account password, we need to verify if it's nobody but you trying to reset your password. Please use the below link to confirm your email address and complete the reset password process.<p><br>
+                    <p>Hello ,</p>
+                    <p>It happens that we often forget our password. Don't worry, we at <a href="http://navprayas.in">Navprayas</a> are here to assist you..</p>
+                    <p>In order to reset your Navprayas account password, we need to verify if it's nobody but you trying to reset your password. Please use the below link to confirm your email address and complete the reset password process.<p>
                     <p>${process.env.CLIENT_URL}/users/password/reset/${token}</p>
                     <br>
-                    <p>Thank You</p>
-                    <p>Navprayas - A Group of Innovative Thoughts</p>
+                    <p>Thanks and regards<br>Navprayas<br>(A Group of Innovative Thoughts)</p>
                 `,
         };
 
