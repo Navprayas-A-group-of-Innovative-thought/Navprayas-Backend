@@ -12,8 +12,6 @@ exports.validSignup = [
       "The password must be 8 to 20 characters long and must contain atleast one lower case, one uppercase, one special character(@,#,$,%,&,_) and one digit."
     ),
   check("confirmPassword")
-    .notEmpty()
-    .withMessage("Confirm Password cannot be empty.")
     .trim()
     .custom(async (confirmPassword, { req }) => {
       const password = req.body.password;
