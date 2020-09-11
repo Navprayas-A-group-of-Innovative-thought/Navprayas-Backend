@@ -13,7 +13,7 @@ exports.validSignup = [
     ),
   check("confirmPassword")
     .trim()
-    .custom(async (confirmPassword, { req }) => {
+    .custom(async function(confirmPassword, { req }) {
       const password = req.body.password;
       if (password !== confirmPassword) {
         throw new Error("Password and Confirm Password do not match.");
@@ -70,7 +70,7 @@ exports.changePasswordValidator = [
     .notEmpty()
     .withMessage("Confirm Password cannot be empty.")
     .trim()
-    .custom(async (confirmchangePassword, { req }) => {
+    .custom(async function(confirmchangePassword, { req }) {
       const password = req.body.newchangePassword;
       if (password !== confirmchangePassword) {
         throw new Error("Password and Confirm Password do not match.");
