@@ -38,28 +38,13 @@ exports.paytmController = (req, res) => {
     paytmParams,
     process.env.TEST_MERCHANT_KEY,
     (err, checksum) => {
-      var txn_url = "https://securegw-stage.paytm.in/theia/processTransaction";
-      var form_fields = "";
-      for (var x in paytmParams) {
-        form_fields +=
-          "<input type='hidden' name='" +
-          x +
-          "' value='" +
-          paytmParams[x] +
-          "' >";
+      console.log("Checksum: ", checksum);
+      var params = {
+        ...paytmParams,
+        CHECKSUMHASH: checksum
       }
-      form_fields +=
-        "<input type='hidden' name='CHECKSUMHASH' value='" + checksum + "' >";
-
-      res.writeHead(200, { "Content-Type": "text/html" });
-      res.write(
-        '<html><head><title>Merchant Checkout Page</title></head><body><center><h1>Please do not refresh this page...</h1></center><form method="post" action="' +
-          txn_url +
-          '" name="f1">' +
-          form_fields +
-          '</form><script type="text/javascript">document.f1.submit();</script></body></html>'
-      );
-      res.end();
+      console.log(paytmParams)
+      res.json(params)
     }
   );
 };
