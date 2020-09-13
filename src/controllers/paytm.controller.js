@@ -127,7 +127,7 @@ exports.callbackController = (req, res) => {
               // console.log("User : ", user.email);
               if (responseCode == "01") {
                 var responseMsg = "Transaction Successful";
-                res.status(responseCode).json({
+                res.status(200).json({
                   responseMsg: responseMsg,
                   orderID: orderID,
                   txnID: txnID,
@@ -136,7 +136,7 @@ exports.callbackController = (req, res) => {
                 console.log(responseMsg, orderID, txnID, txnDate);
               } else {
                 var responseMsg = _result["RESPMSG"];
-                res.status(responseCode).json({
+                res.status(400).json({
                   responseMsg: responseMsg,
                   orderID: orderID,
                   txnID: txnID,
