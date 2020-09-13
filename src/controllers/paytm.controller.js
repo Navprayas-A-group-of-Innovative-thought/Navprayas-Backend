@@ -98,7 +98,7 @@ exports.callbackController = (req, res) => {
         post_res.on("end", function () {
           var _result = JSON.parse(response);
           // console.log("User : ", user.email);
-          res.render("response", { data: _result });
+          res.render("response.ejs", { data: _result });
         });
       });
 
