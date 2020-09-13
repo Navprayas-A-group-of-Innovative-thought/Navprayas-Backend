@@ -20,7 +20,8 @@ exports.paytmController = (req, res) => {
         return res.status(400).json("Missing Form ID or Amount");
       } else {
         var email = user.email;
-        var mobile_no = user.profile.contact;
+        var mobile_no = String(user.profile.contact);
+        console.log(typeof(email),typeof(mobile_no))
         var paytmParams = {
           MID: process.env.TEST_MERCHANT_ID,
           WEBSITE: process.env.WEBSITE,
@@ -28,8 +29,8 @@ exports.paytmController = (req, res) => {
           CHANNEL_ID: process.env.CHANNEL_ID,
           ORDER_ID: req.query.formId + new Date().getTime(),
           CUST_ID: "abcdefg",
-          MOBILE_NO: user.profile.contact.toString('utf-8'),
-          EMAIL: user.email.toString('utf-8'),
+          MOBILE_NO: mobile_no,
+          EMAIL: email,
           TXN_AMOUNT: req.query.amt,
           CALLBACK_URL: process.env.CALLBACK_URL,
         };
