@@ -53,15 +53,15 @@ exports.paytmController = (req, res) => {
 };
 
 exports.callbackController = (req, res) => {
-  const token = req.headers.authorization.split(" "); // extracting token from header
-  const { _id } = jwt.decode(token[1]);
-  User.findOne({ _id }).exec((err, user) => {
-    if (err || !user) {
-      // if user not found
-      return res.status(404).json({
-        errorDetails: "User doesn't exist.",
-      });
-    } else {
+  // const token = req.headers.authorization.split(" "); // extracting token from header
+  // const { _id } = jwt.decode(token[1]);
+  // User.findOne({ _id }).exec((err, user) => {
+  //   if (err || !user) {
+  //     // if user not found
+  //     return res.status(404).json({
+  //       errorDetails: "User doesn't exist.",
+  //     });
+  //   } else {
       console.log("User : ", user.email);
       var body = "";
       console.log("callback received");
@@ -152,6 +152,4 @@ exports.callbackController = (req, res) => {
           post_req.end();
         });
       });
-    }
-  });
-};
+  };
