@@ -21,7 +21,6 @@ exports.paytmController = (req, res) => {
       } else {
         var email = user.email;
         var mobile_no = String(user.profile.contact);
-        console.log(typeof(email),typeof(mobile_no))
         var paytmParams = {
           MID: process.env.TEST_MERCHANT_ID,
           WEBSITE: process.env.WEBSITE,
