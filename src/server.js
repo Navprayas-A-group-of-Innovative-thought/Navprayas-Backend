@@ -2,7 +2,8 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from "dotenv";
-import ejs from 'ejs'
+const path = require('path')
+const ejs = require('ejs')
 
 //for cross origin resource sharing
 import cors from 'cors'
