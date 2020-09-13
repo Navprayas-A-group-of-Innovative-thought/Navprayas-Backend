@@ -28,8 +28,8 @@ exports.paytmController = (req, res) => {
           CHANNEL_ID: process.env.CHANNEL_ID,
           ORDER_ID: req.query.formId + new Date().getTime(),
           CUST_ID: "abcdefg",
-          MOBILE_NO: user.profile.contact.toString(),
-          EMAIL: user.email.toString(),
+          MOBILE_NO: user.profile.contact.toString('utf-8'),
+          EMAIL: user.email.toString('utf-8'),
           TXN_AMOUNT: req.query.amt,
           CALLBACK_URL: process.env.CALLBACK_URL,
         };
