@@ -1,7 +1,7 @@
 const https = require("https");
 const qs = require("querystring");
 const checksum = require("../helpers/paytm/checksum");
-const { response } = require("express");
+const { details } = require("express");
 const User = require("../model/users.model");
 const jwt = require("jsonwebtoken");
 const Form = require("../model/userForm.model");
@@ -98,7 +98,7 @@ exports.callbackController = (req, res) => {
         post_res.on("end", function () {
           var _result = JSON.parse(response);
           // console.log("User : ", user.email);
-          res.render("response.ejs", { data: _result });
+          res.render("details", { data: _result });
         });
       });
 
