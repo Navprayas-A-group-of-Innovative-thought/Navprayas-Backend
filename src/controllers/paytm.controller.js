@@ -62,94 +62,72 @@ exports.callbackController = (req, res) => {
   //       errorDetails: "User doesn't exist.",
   //     });
   //   } else {
-      // console.log("User : ", user.email);
-      var body = "";
-      console.log("callback received");
-      req.on("data", function (data) {
-        body += data;
-      });
+  // console.log("User : ", user.email);
+  var body = "";
+  console.log("callback received");
+  req.on("data", function (data) {
+    body += data;
+  });
 
-      req.on("end", function () {
-        var html = "";
-        var post_data = qs.parse(body);
+  req.on("end", function () {
+    var html = "";
+    var post_data = qs.parse(body);
 
-        // received params in callback
-        console.log("Callback Response: ", post_data, "\n");
+    // received params in callback
+    console.log("Callback Response: ", post_data, "\n");
 
-        // verify the checksum
-        var checksumhash = post_data.CHECKSUMHASH;
-        // delete post_data.CHECKSUMHASH;
-        var result = checksum.verifychecksum(
-          post_data,
-          process.env.TEST_MERCHANT_KEY,
-          checksumhash
-        );
-        console.log("Checksum Result => ", result, "\n");
+    // verify the checksum
+    var checksumhash = post_data.CHECKSUMHASH;
+    // delete post_data.CHECKSUMHASH;
+    var result = checksum.verifychecksum(
+      post_data,
+      process.env.TEST_MERCHANT_KEY,
+      checksumhash
+    );
+    console.log("Checksum Result => ", result, "\n");
 
-        // Send Server-to-Server request to verify Order Status
-        var params = {
-          MID: process.env.TEST_MERCHANT_ID,
-          ORDERID: post_data.ORDERID,
-        };
+    // Send Server-to-Server request to verify Order Status
+    var params = {
+      MID: process.env.TEST_MERCHANT_ID,
+      ORDERID: post_data.ORDERID,
+    };
 
-        checksum.genchecksum(params, process.env.TEST_MERCHANT_KEY, function (
-          err,
-          checksum
-        ) {
-          params.CHECKSUMHASH = checksum;
-          post_data = "JsonData=" + JSON.stringify(params);
+    checksum.genchecksum(params, process.env.TEST_MERCHANT_KEY, function (
+      err,
+      checksum
+    ) {
+      params.CHECKSUMHASH = checksum;
+      post_data = "JsonData=" + JSON.stringify(params);
 
-          var options = {
-            hostname: "securegw-stage.paytm.in", // for staging
-            // hostname: 'securegw.paytm.in', // for production
-            port: 443,
-            path: "/merchant-status/getTxnStatus",
-            method: "POST",
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-              "Content-Length": post_data.length,
-            },
-          };
+      var options = {
+        hostname: "securegw-stage.paytm.in", // for staging
+        // hostname: 'securegw.paytm.in', // for production
+        port: 443,
+        path: "/merchant-status/getTxnStatus",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Length": post_data.length,
+        },
+      };
 
-          // Set up the request
-          var response = "";
-          var post_req = https.request(options, function (post_res) {
-            post_res.on("data", function (chunk) {
-              response += chunk;
-            });
+      // Set up the request
+      var response = "";
+      var post_req = https.request(options, function (post_res) {
+        post_res.on("data", function (chunk) {
+          response += chunk;
+        });
 
-            post_res.on("end", function () {
-              var _result = JSON.parse(response);
-              var responseCode = _result["RESPCODE"];
-              var orderID = _result["ORDERID"];
-              var txnID = _result["TXNID"];
-              var txnDate = _result["TXNDATE"];
-              // console.log("User : ", user.email);
-              if (responseCode == "01") {
-                var responseMsg = "Transaction Successful";
-                res.status(200).json({
-                  responseMsg: responseMsg,
-                  orderID: orderID,
-                  txnID: txnID,
-                  txnDate: txnDate,
-                });
-                console.log(responseMsg, orderID, txnID, txnDate);
-              } else {
-                var responseMsg = _result["RESPMSG"];
-                res.status(400).json({
-                  responseMsg: responseMsg,
-                  orderID: orderID,
-                  txnID: txnID,
-                  txnDate: txnDate,
-                });
-                console.log(responseMsg, orderID, txnID, txnDate);
-              }
-            });
-          });
-
-          // post the data
-          post_req.write(post_data);
-          post_req.end();
+        post_res.on("end", function () {
+          var _result = JSON.parse(response);
+          // console.log("User : ", user.email);
+          res.render("response", { data: _result });
         });
       });
-  };
+
+      // post the data
+      post_req.write(post_data);
+      post_req.end();
+    });
+  });
+};

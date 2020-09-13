@@ -2,6 +2,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from "dotenv";
+import ejs from 'ejs'
 
 //for cross origin resource sharing
 import cors from 'cors'
@@ -13,6 +14,10 @@ dotenv.config();
 const app = express()
 app.use(cors())
 app.use(express.json())
+
+// Set the view engine to ejs
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
 
 console.log(process.env)
 
