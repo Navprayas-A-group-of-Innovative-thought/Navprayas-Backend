@@ -7,62 +7,39 @@ const jwt = require("jsonwebtoken");
 const Form = require("../model/userForm.model");
 
 exports.paytmController = (req, res) => {
-  const token = req.headers.authorization.split(" "); // extracting token from header
-  const { _id } = jwt.decode(token[1]);
-  User.findOne({ _id }).exec((err, user) => {
-    if (err || !user) {
-      // if user not found
-      return res.status(404).json({
-        errorDetails: "User doesn't exist.",
-      });
-    } else {
-      if (!req.query.formId || !req.query.amt) {
-        return res.status(400).json("Missing Form ID or Amount");
-      } else {
-        var email = user.email;
-        var mobile_no = String(user.profile.contact);
-        var paytmParams = {
-          MID: process.env.TEST_MERCHANT_ID,
-          WEBSITE: process.env.WEBSITE,
-          INDUSTRY_TYPE_ID: process.env.INDUSTRY_TYPE,
-          CHANNEL_ID: process.env.CHANNEL_ID,
-          ORDER_ID: req.query.formId + new Date().getTime(),
-          CUST_ID: "abcdefg",
-          MOBILE_NO: mobile_no,
-          EMAIL: email,
-          TXN_AMOUNT: req.query.amt,
-          CALLBACK_URL: process.env.CALLBACK_URL,
-        };
+  if (!req.query.formId || !req.query.amt) {
+    return res.status(400).json("Missing Form ID or Amount");
+  } else {
+    var paytmParams = {
+      MID: process.env.TEST_MERCHANT_ID,
+      WEBSITE: process.env.WEBSITE,
+      INDUSTRY_TYPE_ID: process.env.INDUSTRY_TYPE,
+      CHANNEL_ID: process.env.CHANNEL_ID,
+      ORDER_ID: req.query.formId + new Date().getTime(),
+      CUST_ID: "abcdefg",
+      MOBILE_NO: "7777777777",
+      EMAIL: "email",
+      TXN_AMOUNT: req.query.amt,
+      CALLBACK_URL: process.env.CALLBACK_URL,
+    };
 
-        checksum.genchecksum(
-          paytmParams,
-          process.env.TEST_MERCHANT_KEY,
-          (err, checksum) => {
-            console.log("Checksum: ", checksum);
-            var params = {
-              ...paytmParams,
-              CHECKSUMHASH: checksum,
-            };
-            console.log(paytmParams);
-            res.json(params);
-          }
-        );
+    checksum.genchecksum(
+      paytmParams,
+      process.env.TEST_MERCHANT_KEY,
+      (err, checksum) => {
+        console.log("Checksum: ", checksum);
+        var params = {
+          ...paytmParams,
+          CHECKSUMHASH: checksum,
+        };
+        console.log(paytmParams);
+        res.json(params);
       }
-    }
-  });
+    );
+  }
 };
 
 exports.callbackController = (req, res) => {
-  // const token = req.headers.authorization.split(" "); // extracting token from header
-  // const { _id } = jwt.decode(token[1]);
-  // User.findOne({ _id }).exec((err, user) => {
-  //   if (err || !user) {
-  //     // if user not found
-  //     return res.status(404).json({
-  //       errorDetails: "User doesn't exist.",
-  //     });
-  //   } else {
-  // console.log("User : ", user.email);
   var body = "";
   console.log("callback received");
   req.on("data", function (data) {
@@ -121,7 +98,7 @@ exports.callbackController = (req, res) => {
         post_res.on("end", function () {
           var _result = JSON.parse(response);
           // console.log("User : ", user.email);
-          res.render("response", { 'data': _result });
+          res.render("response", { data: _result });
         });
       });
 
