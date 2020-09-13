@@ -62,7 +62,7 @@ exports.callbackController = (req, res) => {
   //       errorDetails: "User doesn't exist.",
   //     });
   //   } else {
-      console.log("User : ", user.email);
+      // console.log("User : ", user.email);
       var body = "";
       console.log("callback received");
       req.on("data", function (data) {
@@ -124,7 +124,7 @@ exports.callbackController = (req, res) => {
               var orderID = _result["ORDERID"];
               var txnID = _result["TXNID"];
               var txnDate = _result["TXNDATE"];
-              console.log("User : ", user.email);
+              // console.log("User : ", user.email);
               if (responseCode == "01") {
                 var responseMsg = "Transaction Successful";
                 res.status(responseCode).json({
