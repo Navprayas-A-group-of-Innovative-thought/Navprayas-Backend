@@ -33,10 +33,13 @@
             "board": "cbse"
         }
     },
-    "referenceNumber": "hfsad",
     "transactionId": "1234",
     "transactionDate": "2020/08/15",
+    "orderId": "MTSE23413",
+    "paymentStatus": "PENDING",
     "registrationDate": "2020/08/15",
+    "formSubmitted": "false",
+    "formVerified": "false",
     "eventId": "mtse",
     "questionPaperLang": "english",
     "admitCardNumber": "12",
@@ -79,9 +82,12 @@
             "board": "cbse"
         }
     },
-    "referenceNumber": "hfsad",
     "transactionId": "1234",
     "transactionDate": "2020/08/15",
+    "orderId": "PR1234",
+    "paymentStatus": "PENDING",
+    "formSubmitted": "false",
+    "formVerified": "false",
     "registrationDate": "2020/08/15",
     "eventId": "mtse",
     "category": "junior",
@@ -120,9 +126,12 @@
         "fatherName": "me",
         "motherName": "fu"
     },
-    "referenceNumber": "hfsad",
     "transactionId": "1234",
     "transactionDate": "2020/08/15",
+    "orderId": "FHS1234",
+    "paymentStatus": "PENDING",
+    "formSubmitted": "false",
+    "formVerified": "false",
     "registrationDate": "2020/08/15",
     "eventId": "mtse",
     "category": "junior",
@@ -161,9 +170,12 @@
         "fatherName": "me",
         "motherName": "fu"
     },
-    "referenceNumber": "hfsad",
     "transactionId": "1234",
     "transactionDate": "2020/08/15",
+    "orderId": "CHES1234",
+    "paymentStatus": "PENDING",
+    "formSubmitted": "false",
+    "formVerified": "false",
     "registrationDate": "2020/08/15",
     "eventId": "mtse",
     "haveChessBoard":"true",
@@ -203,8 +215,9 @@
         "fatherName": "me",
         "motherName": "fu"
     }],
-    "referenceNumber": "hfsad",
     "registrationDate": "2020/08/15",
+    "formSubmitted": "false",
+    "formVerified": "false",
     "eventId": "mtse",
     "category": "junior",
     "admitCardNumber": "12",
@@ -227,8 +240,9 @@
         "primary": "9204534523",
         "other": "7026378427"
     },
-    "referenceNumber": "hfsad",
     "registrationDate": "2020/08/15",
+    "formSubmitted": "false",
+    "formVerified": "false",
     "eventId": "mtse",
     "year": "2020"
 }
@@ -238,7 +252,13 @@
 
 ### Validation
 * used **express-validator** package
-* Every field of the form is required to be filled.
+* Every field of the form is required to be filled, except 
+    * registrationDate
+    * transactionId
+    * transactionDate
+    * orderId
+    * paymentStatus
+    * admitCardNumber
 * Value of the fields is accepted in the following format :
     * **firstName**, **lastName** : hritik (only a-zA-Z)
     * **fatherName**, **motherName** : Meghnath prasad (only a-zA-Z and space in between)
@@ -246,6 +266,9 @@
     * **email** : hritik.kmr.111@gmail.com
     * **mobile no.** : +919204526767 or 09204253423 or 9204256251 
     * **pincode** : 823003 (valid 6 digit postal code)
+    * **orderId** : string (eg. mtse12345)
+    * **paymentStatus** : PENDING (by default)
+    * **transactionId** : string
 
 **GO TO LINKS**
 1. [MTSE](#1-mtse-form-schema) 

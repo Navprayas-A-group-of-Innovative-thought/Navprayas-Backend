@@ -116,10 +116,6 @@ var userInfoWithEducationSchema = new userInfoBase ({
 // base custom schema contructor for common fields in all forms
 var base = function (paths) {      
     var commonSchema = new Schema({
-        referenceNumber:{
-            type:String,
-            required:true
-        },
         registrationDate:{
             type:Date,
             required:true,
@@ -136,6 +132,16 @@ var base = function (paths) {
         year:{
             type:Number,
             required:true
+        },
+        formVerified:{
+            type:Boolean,
+            required:true,
+            default:false
+        },
+        formSubmitted:{
+            type:Boolean,
+            required:true,
+            default:false
         }
     },{
         timestamps:true
@@ -162,6 +168,14 @@ var mtseFormSchema = new base ({
         required:true,
         trim:true
     },
+    orderId:{
+        type:String,
+    },
+    paymentStatus:{
+        type:String,
+        required:true,
+        default:false
+    },
     questionPaperLang:{
         type:String,
         required:true
@@ -186,6 +200,14 @@ var puzzleRaceFormSchema = new base({
         type:Date,
         required:true,
         trim:true
+    },
+    orderId:{
+        type:String,
+    },
+    paymentStatus:{
+        type:String,
+        required:true,
+        default:false
     },
     category:{
         type:String,
@@ -212,6 +234,14 @@ var fhsFormSchema = new base({
         required:true,
         trim:true
     },
+    orderId:{
+        type:String,
+    },
+    paymentStatus:{
+        type:String,
+        required:true,
+        default:false
+    },
     category:{
         type:String,
         required:true
@@ -236,6 +266,14 @@ var chessFormSchema = new base({
         type:Date,
         required:true,
         trim:true
+    },
+    orderId:{
+        type:String,
+    },
+    paymentStatus:{
+        type:String,
+        required:true,
+        default:false
     },
     category:{
         type:String,
@@ -298,10 +336,6 @@ var careerCounFormSchema = new Schema({
             required:true
         }
     },
-    referenceNumber:{
-        type:String,
-        required:true
-    },
     registrationDate:{
         type:Date,
         required:true,
@@ -314,6 +348,16 @@ var careerCounFormSchema = new Schema({
     year:{
         type:Number,
         required:true
+    },
+    formVerified:{
+        type:Boolean,
+        required:true,
+        default:false
+    },
+    formSubmitted:{
+        type:Boolean,
+        required:true,
+        default:false
     }
 },{
     timestamps:true
