@@ -98,7 +98,11 @@ exports.callbackController = (req, res) => {
         post_res.on("end", function () {
           var _result = JSON.parse(response);
           // console.log("User : ", user.email);
-          res.render("details.ejs", { data: _result });
+          if (_result['RESPCODE'] == '01') {
+            res.render("details", { 'head': 'Success','data':_result})
+          } else {
+            res.render("details", { 'head': 'Failure','data':_result})
+          }
         });
       });
 
