@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 // Set the view engine to ejs
-app.set("views", path.join(__dirname, "src/views"));
+app.set("views", path.join(__dirname, "../src/views"));
 app.set("view engine", "ejs");
 
 console.log(process.env);
