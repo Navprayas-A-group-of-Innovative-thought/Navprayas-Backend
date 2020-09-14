@@ -7,7 +7,7 @@ const auth = require('../helpers/auth')
 const { paytmController, callbackController } = require("../controllers/paytm.controller");
 
 // Routes here
-router.get("/payment", auth, paytmController);
+router.get("/payment", paytmController);
 router.post("/callback", callbackController)
 
 module.exports = router;
