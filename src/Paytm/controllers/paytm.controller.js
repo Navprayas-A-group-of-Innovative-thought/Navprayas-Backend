@@ -1,8 +1,9 @@
 const https = require("https");
+const http = require("http");
 const checksum = require("../helpers/checksum");
 const User = require("../../model/users.model");
 const Transaction = require("../model/transaction.model");
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
 
 exports.paytmController = (req, res) => {
   const token = req.headers.authorization.split(" "); // extracting token from header
@@ -22,11 +23,9 @@ exports.paytmController = (req, res) => {
         CHESS: "30",
         RANG: "50",
       };
-      
-      var formID = req.query.formId
-      console.log(formID)
+
+      var formID = req.query.formId;
       var price = dict[formID];
-      console.log(price, typeof(price))
 
       var paytmParams = {};
 
@@ -46,7 +45,6 @@ exports.paytmController = (req, res) => {
           custId: user._id,
         },
       };
-      console.log(paytmParams.body.txnAmount.value,typeof(paytmParams.body.txnAmount.value))
 
       /*
        * Generate checksum by parameters we have in body
@@ -93,21 +91,21 @@ exports.paytmController = (req, res) => {
                 userId: user._id,
                 txnToken: result.body.txnToken,
                 orderId: orderID,
-                formId: formID
+                formId: formID,
               });
-              transaction.save((err, transaction) => {
+              transaction.save((err) => {
                 if (err) {
                   console.log("Save error", errorHandler(err));
                   return res.status(500).json({
                     errorDetails: errorHandler(err),
                   });
-                } else {
-                  console.log('Transaction saved successfully',transaction)
                 }
-              })
+              });
 
-              res.writeHead(200, { "Content-Type": "text/html" });
-              res.write(`<html>
+              http.createServer(function (req, res) {
+                if (req.method == 'POST') {
+                  res.writeHead(200, { "Content-Type": "text/html" });
+                  res.write(`<html>
                                     <head>
                                         <title>Show Payment Page</title>
                                     </head>
@@ -127,7 +125,9 @@ exports.paytmController = (req, res) => {
                                        </form>
                                     </body>
                                  </html>`);
-              res.end();
+                  res.end();
+                }
+              });
             });
           });
 
