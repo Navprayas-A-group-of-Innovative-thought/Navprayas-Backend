@@ -66,7 +66,7 @@ app.use("/", contactRouter);
 const webinarRouter = require("./routes/webinar.route");
 app.use("/webinar/", webinarRouter);
 
-const paytmRouter = require("./routes/paytm.route");
+const paytmRouter = require("./Paytm/routes/paytm.route");
 app.use("/paytm", paytmRouter);
 //---------------------------------------------------------------------
 

@@ -158,6 +158,11 @@ var mtseFormSchema = new base ({
         type:userInfoWithEducationSchema,
         required:true
     },
+    transactionToken: {
+        type: String,
+        required: true,
+        trim: true
+    },
     transactionId:{
         type:String,
         required:true,
@@ -190,6 +195,11 @@ var puzzleRaceFormSchema = new base({
     user:{
         type:userInfoWithEducationSchema,
         required:true
+    },
+    transactionToken: {
+        type: String,
+        required: true,
+        trim: true
     },
     transactionId:{
         type:String,
@@ -224,6 +234,11 @@ var fhsFormSchema = new base({
         type:userInfoSchema,
         required:true
     },
+    transactionToken: {
+        type: String,
+        required: true,
+        trim: true
+    },
     transactionId:{
         type:String,
         required:true,
@@ -256,6 +271,11 @@ var chessFormSchema = new base({
     user:{
         type:userInfoSchema,
         required:true
+    },
+    transactionToken: {
+        type: String,
+        required: true,
+        trim: true
     },
     transactionId:{
         type:String,
@@ -294,6 +314,11 @@ var rangotsavFormSchema = new base({
         type:[userInfoSchema],
         required:true
     },
+    transactionToken: {
+        type: String,
+        required: true,
+        trim: true
+    },
     category:{
         type:String,
         required:true
@@ -308,6 +333,11 @@ var careerCounFormSchema = new Schema({
     firstName:{
         type:String,
         required:true
+    },
+    transactionToken: {
+        type: String,
+        required: true,
+        trim: true
     },
     lastName:{
         type:String,
