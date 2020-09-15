@@ -23,7 +23,7 @@ exports.paytmController = (req, res) => {
         RANG: "50",
       };
       
-      var formID = req.params.formId
+      var formID = req.query.formId
       console.log(formID)
       var price = dict[formID];
       console.log(price, typeof(price))
