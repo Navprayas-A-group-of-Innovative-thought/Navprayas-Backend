@@ -92,6 +92,16 @@ exports.paytmController = (req, res) => {
                 orderId: orderID,
                 formId: formID
               });
+              transaction.save((err, transaction) => {
+                if (err) {
+                  console.log("Save error", errorHandler(err));
+                  return res.status(500).json({
+                    errorDetails: errorHandler(err),
+                  });
+                } else {
+                  console.log('Transaction saved successfully',transaction)
+                }
+              })
 
               res.writeHead(200, { "Content-Type": "text/html" });
               res.write(`<html>
