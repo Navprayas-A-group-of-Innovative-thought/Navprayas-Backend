@@ -22,9 +22,11 @@ exports.paytmController = (req, res) => {
         CHESS: "30",
         RANG: "50",
       };
-
+      
       var formID = req.params.formId
+      console.log(formID)
       var price = dict[formID];
+      console.log(price, typeof(price))
 
       var paytmParams = {};
 
@@ -44,6 +46,7 @@ exports.paytmController = (req, res) => {
           custId: user._id,
         },
       };
+      console.log(paytmParams.body.txnAmount.value,typeof(paytmParams.body.txnAmount.value))
 
       /*
        * Generate checksum by parameters we have in body
