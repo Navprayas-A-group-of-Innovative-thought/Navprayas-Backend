@@ -89,7 +89,7 @@ exports.paytmController = (req, res) => {
               console.log("Response: ", result);
 
               // Saving txn token in database
-              const transaction = new Transaction({
+              var transaction = new Transaction({
                 userId: user._id,
                 txnToken: result.body.txnToken,
                 orderId: orderID,
