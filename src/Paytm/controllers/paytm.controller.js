@@ -2,6 +2,7 @@ const https = require("https");
 const checksum = require("../helpers/checksum");
 const User = require("../../model/users.model");
 const Transaction = require("../model/transaction.model");
+const jwt = require('jsonwebtoken')
 
 exports.paytmController = (req, res) => {
   const token = req.headers.authorization.split(" "); // extracting token from header
