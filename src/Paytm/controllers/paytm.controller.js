@@ -1,9 +1,10 @@
 const https = require("https");
-const http = require("http");
+const http = require('http')
 const checksum = require("../helpers/checksum");
 const User = require("../../model/users.model");
 const Transaction = require("../model/transaction.model");
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken')
+
 
 exports.paytmController = (req, res) => {
   const token = req.headers.authorization.split(" "); // extracting token from header
@@ -23,8 +24,8 @@ exports.paytmController = (req, res) => {
         CHESS: "30",
         RANG: "50",
       };
-
-      var formID = req.query.formId;
+      
+      var formID = req.query.formId
       var price = dict[formID];
 
       var paytmParams = {};
@@ -91,7 +92,7 @@ exports.paytmController = (req, res) => {
                 userId: user._id,
                 txnToken: result.body.txnToken,
                 orderId: orderID,
-                formId: formID,
+                formId: formID
               });
               transaction.save((err) => {
                 if (err) {
@@ -100,12 +101,13 @@ exports.paytmController = (req, res) => {
                     errorDetails: errorHandler(err),
                   });
                 }
-              });
+              })
 
               http.createServer(function (req, res) {
-                if (req.method == 'POST') {
-                  res.writeHead(200, { "Content-Type": "text/html" });
-                  res.write(`<html>
+                
+              })
+              res.writeHead(200, { "Content-Type": "text/html" });
+              res.write(`<html>
                                     <head>
                                         <title>Show Payment Page</title>
                                     </head>
@@ -125,9 +127,7 @@ exports.paytmController = (req, res) => {
                                        </form>
                                     </body>
                                  </html>`);
-                  res.end();
-                }
-              });
+              res.end();
             });
           });
 
@@ -135,5 +135,5 @@ exports.paytmController = (req, res) => {
           post_req.end();
         });
     }
-  });
-};
+  })
+}
