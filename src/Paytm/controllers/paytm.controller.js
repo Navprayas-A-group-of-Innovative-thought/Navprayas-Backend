@@ -7,8 +7,8 @@ const jwt = require("jsonwebtoken");
 
 exports.paytmController = (req, res) => {
   const token = req.headers.authorization.split(" "); // extracting token from header
-  console.log("Headers : ", req.headers);
-  console.log("Token : ", token);
+  // console.log("Headers : ", req.headers);
+  // console.log("Token : ", token);
   const { _id } = jwt.decode(token[1]); // decoding _id from token
   User.findOne({ _id }).exec((err, user) => {
     // searching for _id in database
@@ -19,6 +19,7 @@ exports.paytmController = (req, res) => {
       });
     } else {
       var userID = user._id;
+      console.log('Else : ',userID)
     }
     var dict = {
       MTSE: "20",
@@ -50,6 +51,8 @@ exports.paytmController = (req, res) => {
         custId: userID,
       },
     };
+
+    console.log("Paytm Params : ",paytmParams.body.userInfo.custId)
 
     /*
      * Generate checksum by parameters we have in body
