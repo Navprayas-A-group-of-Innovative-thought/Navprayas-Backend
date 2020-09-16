@@ -118,7 +118,6 @@ var base = function (paths) {
     var commonSchema = new Schema({
         registrationDate:{
             type:Date,
-            required:true,
             trim:true
         },
         eventId:{
@@ -127,11 +126,9 @@ var base = function (paths) {
         },
         admitCardNumber:{
             type:String,
-            required:true
         },
         year:{
             type:Number,
-            required:true
         },
         formVerified:{
             type:Boolean,
@@ -143,8 +140,6 @@ var base = function (paths) {
             required:true,
             default:false
         }
-    },{
-        timestamps:true
     });
 
     commonSchema.add(paths);
@@ -165,12 +160,10 @@ var mtseFormSchema = new base ({
     },
     transactionId:{
         type:String,
-        required:true,
         trim:true
     },
     transactionDate:{
         type:Date,
-        required:true,
         trim:true
     },
     orderId:{
@@ -178,8 +171,7 @@ var mtseFormSchema = new base ({
     },
     paymentStatus:{
         type:String,
-        required:true,
-        default:false
+        default:'PENDING'
     },
     questionPaperLang:{
         type:String,
@@ -203,12 +195,10 @@ var puzzleRaceFormSchema = new base({
     },
     transactionId:{
         type:String,
-        required:true,
         trim:true
     },
     transactionDate:{
         type:Date,
-        required:true,
         trim:true
     },
     orderId:{
@@ -216,8 +206,7 @@ var puzzleRaceFormSchema = new base({
     },
     paymentStatus:{
         type:String,
-        required:true,
-        default:false
+        default:'PENDING'
     },
     category:{
         type:String,
@@ -241,12 +230,10 @@ var fhsFormSchema = new base({
     },
     transactionId:{
         type:String,
-        required:true,
         trim:true
     },
     transactionDate:{
         type:Date,
-        required:true,
         trim:true
     },
     orderId:{
@@ -254,8 +241,7 @@ var fhsFormSchema = new base({
     },
     paymentStatus:{
         type:String,
-        required:true,
-        default:false
+        default:'PENDING'
     },
     category:{
         type:String,
@@ -279,12 +265,10 @@ var chessFormSchema = new base({
     },
     transactionId:{
         type:String,
-        required:true,
         trim:true
     },
     transactionDate:{
         type:Date,
-        required:true,
         trim:true
     },
     orderId:{
@@ -292,8 +276,7 @@ var chessFormSchema = new base({
     },
     paymentStatus:{
         type:String,
-        required:true,
-        default:false
+        default:'PENDING'
     },
     category:{
         type:String,
@@ -376,8 +359,7 @@ var careerCounFormSchema = new Schema({
         required:true
     },
     year:{
-        type:Number,
-        required:true
+        type:Number
     },
     formVerified:{
         type:Boolean,

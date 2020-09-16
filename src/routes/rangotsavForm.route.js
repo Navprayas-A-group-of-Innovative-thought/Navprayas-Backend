@@ -47,6 +47,8 @@ rangotsavFormRouter.route('/register/')
         }
         else {
             req.body.formSubmitted = true;
+            req.body.registrationDate = Date.now();
+            req.body.year = new Date().getFullYear();
             models.rangotsavUsers.create(req.body)
                 .then((users) => {
                     console.log('Inserted:\n ', users);
