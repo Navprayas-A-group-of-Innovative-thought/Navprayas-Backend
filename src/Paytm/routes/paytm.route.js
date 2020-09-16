@@ -8,8 +8,8 @@ const { paytmController } = require("../controllers/paytm.controller");
 const { callbackController } = require("../controllers/callback.controller");
 
 // Routes here
-router.post("/payment", auth, paytmController);
-// router.post("/payment", paytmController);
+router.get("/payment", auth, paytmController);
+router.post("/payment", paytmController);
 router.post("/callback", callbackController);
 // router.get("/transaction", auth, transactionController);
 

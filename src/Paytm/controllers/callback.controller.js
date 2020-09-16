@@ -38,7 +38,7 @@ exports.callbackController = (req, res) => {
           )
           .then(function (checksum) {
             paytmParams.head = {
-              "signature": checksum,
+              signature: checksum,
             };
 
             var post_data = JSON.stringify(paytmParams);
@@ -66,9 +66,14 @@ exports.callbackController = (req, res) => {
                 response += chunk;
               });
 
-                post_res.on("end", function () {
-                  response = JSON.parse(JSON.stringify(response))
-                    console.log("Response: ", response);
+              post_res.on("end", function () {
+                response = JSON.parse(JSON.stringify(response));
+                console.log("Response: ", response);
+                if (response.body.resultInfo.resultCode == "01") {
+                  res.render("details", { 'head':'Success','data': response });
+                } else {
+                  res.render("details", { 'head':'Failure','data': response });
+                }
                 res.write(response);
                 res.end();
               });
