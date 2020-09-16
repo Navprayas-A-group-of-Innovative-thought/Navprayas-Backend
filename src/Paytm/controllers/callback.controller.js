@@ -1,7 +1,13 @@
 const https = require("https");
 const checksum = require("../helpers/checksum");
 const qs = require("querystring");
-const Form = require('../../model/userForm.model')
+const {
+  mtseUsers,
+  puzzleRaceUsers,
+  fhsUsers,
+  rangotsavUsers,
+  chessUsers,
+} = require("../../model/userForm.model");
 const Transaction = require("../model/transaction.model");
 
 exports.callbackController = (req, res) => {
@@ -70,40 +76,140 @@ exports.callbackController = (req, res) => {
 
               post_res.on("end", function () {
                 response = JSON.parse(response);
-                  console.log("Response: ", response);
-                  
+                console.log("Response: ", response);
+
                 if (response.body.resultInfo.resultCode == "01") {
-                  res.render("details", { 'head':'Success','data': response });
+                  res.render("details", { head: "Success", data: response });
                 } else {
-                  res.render("details", { 'head':'Failure','data': response });
+                  res.render("details", { head: "Failure", data: response });
+                }
+
+                // Update transaction table
+                var orderId = response.body.orderId;
+                Transaction.findOne({ orderId }).exec((err, transaction) => {
+                  if (err || !transaction) {
+                    res.status(404).json({
+                      errorDetails: "Could not retrieve transaction details.",
+                    });
+                  } else {
+                    transaction.status = response.body.resultInfo.resultStatus;
+                    transaction.details = response.body.resultInfo.resultMsg;
+                    transaction.txnId = response.body.txnId;
+                    transaction.txnAmt = response.body.txnAmount;
+                    transaction.gatewayName = response.body.gatewayName;
+                    transaction.bankName = response.body.bankName;
+                    transaction.bankTxnId = response.body.bankTxnId;
+                    transaction.paymentMode = response.body.paymentMode;
+                    transaction.txnDate = response.body.txnDate;
                   }
-                  
-                  // Update transaction table
-                  var orderId = response.body.orderId
-                  Transaction.findOne({ orderId }).exec((err, transaction) => {
-                      if (err || !transaction) {
-                          res.status(404).json({errorDetails: 'Could not retrieve transaction details.'})
-                      } else {
-                          transaction.status = response.body.resultInfo.resultStatus;
-                          transaction.details = response.body.resultInfo.resultMsg;
-                          transaction.txnId = response.body.txnId;
-                          transaction.txnAmt = response.body.txnAmount;
-                          transaction.gatewayName = response.body.gatewayName;
-                          transaction.bankName = response.body.bankName;
-                          transaction.bankTxnId = response.body.bankTxnId;
-                          transaction.paymentMode = response.body.paymentMode;
-                          transaction.txnDate = response.body.txnDate;
-                      }
-                      transaction.save((err, txn) => {
-                          if (err) {
-                              res.status(500).json({errorDetails:"Couldn't save your transaction details."})
-                          } else {
-                              console.log("Saved Transaction : \n",txn)
+                  transaction.save((err, txn) => {
+                    if (err) {
+                      res.status(500).json({
+                        errorDetails: "Couldn't save your transaction details.",
+                      });
+                    } else {
+                      console.log("Saved Transaction : \n", txn);
+                      // Updating details in userForm database
+                      var orderId = response.body.orderId;
+                      var formID = transaction.formId;
+                      if (formID == "MTSE") {
+                        mtseUsers.findOne({ orderId }).exec((err, form) => {
+                          if (err || !form) {
+                            console.log(err);
                           }
-                      })
-
-                  })
-
+                          form.transactionId = response.body.txnId;
+                          form.transactionDate = response.body.txnDate;
+                          form.paymentStatus =
+                            response.body.resultInfo.resultStatus;
+                          form.save((err) => {
+                            if (err) {
+                              console.log("Save error", errorHandler(err));
+                              return res.status(500).json({
+                                errorDetails: errorHandler(err),
+                              });
+                            }
+                          });
+                        });
+                      } else if (formID == "PUZZLE") {
+                        puzzleRaceUsers
+                          .findOne({ orderId })
+                          .exec((err, form) => {
+                            if (err || !form) {
+                              console.log(err);
+                            }
+                            form.transactionId = response.body.txnId;
+                            form.transactionDate = response.body.txnDate;
+                            form.paymentStatus =
+                              response.body.resultInfo.resultStatus;
+                            form.save((err) => {
+                              if (err) {
+                                console.log("Save error", errorHandler(err));
+                                return res.status(500).json({
+                                  errorDetails: errorHandler(err),
+                                });
+                              }
+                            });
+                          });
+                      } else if (formID == "FHS") {
+                        fhsUsers.findOne({ orderId }).exec((err, form) => {
+                          if (err || !form) {
+                            console.log(err);
+                          }
+                          form.transactionId = response.body.txnId;
+                          form.transactionDate = response.body.txnDate;
+                          form.paymentStatus =
+                            response.body.resultInfo.resultStatus;
+                          form.save((err) => {
+                            if (err) {
+                              console.log("Save error", errorHandler(err));
+                              return res.status(500).json({
+                                errorDetails: errorHandler(err),
+                              });
+                            }
+                          });
+                        });
+                      } else if (formID == "CHESS") {
+                        chessUsers.findOne({ orderId }).exec((err, form) => {
+                          if (err || !form) {
+                            console.log(err);
+                          }
+                          form.transactionId = response.body.txnId;
+                          form.transactionDate = response.body.txnDate;
+                          form.paymentStatus =
+                            response.body.resultInfo.resultStatus;
+                          form.save((err) => {
+                            if (err) {
+                              console.log("Save error", errorHandler(err));
+                              return res.status(500).json({
+                                errorDetails: errorHandler(err),
+                              });
+                            }
+                          });
+                        });
+                      } else if (formID == "RANG") {
+                        rangotsavUsers
+                          .findOne({ orderId })
+                          .exec((err, form) => {
+                            if (err || !form) {
+                              console.log(err);
+                            }
+                            form.transactionId = response.body.txnId;
+                            form.transactionDate = response.body.txnDate;
+                            form.paymentStatus =
+                              response.body.resultInfo.resultStatus;
+                            form.save((err) => {
+                              if (err) {
+                                console.log("Save error", errorHandler(err));
+                                return res.status(500).json({
+                                  errorDetails: errorHandler(err),
+                                });
+                              }
+                            });
+                          });
+                      }
+                    }
+                  });
+                });
               });
             });
 

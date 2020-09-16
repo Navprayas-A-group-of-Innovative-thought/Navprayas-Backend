@@ -4,6 +4,13 @@ const checksum = require("../helpers/checksum");
 const User = require("../../model/users.model");
 const Transaction = require("../model/transaction.model");
 const jwt = require("jsonwebtoken");
+const {
+  mtseUsers,
+  puzzleRaceUsers,
+  fhsUsers,
+  rangotsavUsers,
+  chessUsers,
+} = require("../../model/userForm.model");
 
 exports.paytmController = (req, res) => {
   const token = req.headers.authorization.split(" "); // extracting token from header
@@ -19,7 +26,9 @@ exports.paytmController = (req, res) => {
       });
     } else {
       var userID = user._id;
-      console.log('Else : ',userID)
+      var email = user.email;
+      console.log("Else : ", userID);
+      console.log(email);
     }
     var dict = {
       MTSE: "20",
@@ -52,7 +61,7 @@ exports.paytmController = (req, res) => {
       },
     };
 
-    console.log("Paytm Params : ",paytmParams.body.userInfo.custId)
+    console.log("Paytm Params : ", paytmParams.body.userInfo.custId);
 
     /*
      * Generate checksum by parameters we have in body
@@ -104,16 +113,106 @@ exports.paytmController = (req, res) => {
             transaction.save((err) => {
               if (err) {
                 console.log("Save error", errorHandler(err));
-                return res.status(500).json({
+                res.status(500).json({
                   errorDetails: errorHandler(err),
                 });
               }
             });
 
+            // mtseUsers.find({}).toArray
+
+            // Saving details in userForm database
+            if (formID == "MTSE") {
+              mtseUsers.findOne({ 'user.email': email }).exec((err, form) => {
+                if (err || !form) {
+                  console.log(err);
+                }
+                form.eventId = formID;
+                form.transactionToken = result.body.txnToken;
+                form.orderId = orderID;
+                form.save((err) => {
+                  if (err) {
+                    console.log("Save error", errorHandler(err));
+                    return res.status(500).json({
+                      errorDetails: errorHandler(err),
+                    });
+                  }
+                });
+              });
+            } else if (formID == "PUZZLE") {
+              puzzleRaceUsers.findOne({ 'user.email': email }).exec((err, form) => {
+                if (err || !form) {
+                  console.log(err);
+                }
+                form.eventId = formID;
+                form.transactionToken = result.body.txnToken;
+                form.orderId = orderID;
+                form.save((err) => {
+                  if (err) {
+                    console.log("Save error", errorHandler(err));
+                    return res.status(500).json({
+                      errorDetails: errorHandler(err),
+                    });
+                  }
+                });
+              });
+            } else if (formID == "FHS") {
+              fhsUsers.findOne({ 'user.email': email }).exec((err, form) => {
+                if (err || !form) {
+                  console.log(err);
+                }
+                form.eventId = formID;
+                form.transactionToken = result.body.txnToken;
+                form.orderId = orderID;
+                form.save((err) => {
+                  if (err) {
+                    console.log("Save error", errorHandler(err));
+                    return res.status(500).json({
+                      errorDetails: errorHandler(err),
+                    });
+                  }
+                });
+              });
+            } else if (formID == "CHESS") {
+              chessUsers.findOne({ 'user.email': email }).exec((err, form) => {
+                if (err || !form) {
+                  console.log(err);
+                }
+                form.eventId = formID;
+                form.transactionToken = result.body.txnToken;
+                form.orderId = orderID;
+                form.save((err) => {
+                  if (err) {
+                    console.log("Save error", errorHandler(err));
+                    return res.status(500).json({
+                      errorDetails: errorHandler(err),
+                    });
+                  }
+                });
+              });
+            } else if (formID == "RANG") {
+              rangotsavUsers.findOne({ 'user.email': email }).exec((err, form) => {
+                if (err || !form) {
+                  console.log(err);
+                }
+                form.eventId = formID;
+                form.transactionToken = result.body.txnToken;
+                form.orderId = orderID;
+                form.save((err) => {
+                  if (err) {
+                    console.log("Save error", errorHandler(err));
+                    return res.status(500).json({
+                      errorDetails: errorHandler(err),
+                    });
+                  }
+                });
+              });
+            }
+
             res.writeHead(200, { "Content-Type": "text/html" });
             res.write(`<html>
                                     <head>
-                                        <title>Show Payment Page</title>
+                                        <title>Payments Page</title>
                                     </head>
                                     <body>
                                         <center>
@@ -131,6 +230,7 @@ exports.paytmController = (req, res) => {
                                        </form>
                                     </body>
                                   </html>`);
+
             res.end();
           });
         });
