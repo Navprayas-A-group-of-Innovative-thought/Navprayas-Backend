@@ -1,10 +1,9 @@
 const https = require("https");
-const http = require('http')
+const http = require("http");
 const checksum = require("../helpers/checksum");
 const User = require("../../model/users.model");
 const Transaction = require("../model/transaction.model");
-const jwt = require('jsonwebtoken')
-
+const jwt = require("jsonwebtoken");
 
 exports.paytmController = (req, res) => {
   const token = req.headers.authorization.split(" "); // extracting token from header
@@ -24,13 +23,13 @@ exports.paytmController = (req, res) => {
         CHESS: "30",
         RANG: "50",
       };
-      
-      var formID = req.query.formId
+
+      var formID = req.query.formId;
       var price = dict[formID];
 
       var paytmParams = {};
 
-      var orderID = "MTSE" + new Date().getFullYear() + new Date().getTime();
+      var orderID = String(formID) + new Date().getFullYear() + new Date().getTime();
 
       paytmParams.body = {
         requestType: "Payment",
@@ -92,7 +91,7 @@ exports.paytmController = (req, res) => {
                 userId: user._id,
                 txnToken: result.body.txnToken,
                 orderId: orderID,
-                formId: formID
+                formId: formID,
               });
               transaction.save((err) => {
                 if (err) {
@@ -101,9 +100,8 @@ exports.paytmController = (req, res) => {
                     errorDetails: errorHandler(err),
                   });
                 }
-              })
+              });
 
-              
               res.writeHead(200, { "Content-Type": "text/html" });
               res.write(`<html>
                                     <head>
@@ -126,12 +124,6 @@ exports.paytmController = (req, res) => {
                                     </body>
                                   </html>`);
               res.end();
-              // var info = {
-              //   mid: process.env.TEST_MERCHANT_ID,
-              //   orderId: orderID,
-              //   txnToken: result.body.txnToken
-              // }
-              // res.render('refresh',{'data': info})
             });
           });
 
@@ -139,5 +131,5 @@ exports.paytmController = (req, res) => {
           post_req.end();
         });
     }
-  })
-}
+  });
+};

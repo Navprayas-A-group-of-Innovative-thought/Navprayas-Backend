@@ -41,30 +41,30 @@
                 <table class="table table-borderless">
                     <tr>
                         <th>Order ID: </th>
-                        <td><%= data.ORDERID %></td>
+                        <td><%= data.body.orderId %></td>
                     <tr>
                     <tr>
                         <th>Transaction ID: </th>
-                        <td><%= data.TXNID %></td>
+                        <td><%= data.body.txnId %></td>
                     <tr>
                         <th>Bank Transaction ID: </th>
-                        <td><%= data.BANKTXNID %></td>
+                        <td><%= data.body.bankTxnId %></td>
                     </tr>
                     <tr>
                         <th>Transaction Amount: </th>
-                        <td><%= data.TXNAMOUNT %></td>
+                        <td>₹ <%= data.body.txnAmount %></td>
                     </tr>
                     <tr>
                         <th>Status: </th>
-                        <td><%= data.STATUS %></td>
+                        <td><%= data.body.resultInfo.resultStatus %></td>
                     </tr>
                     <tr>
                         <th>Response Message: </th>
-                        <td><%= data.RESPMSG %></td>
+                        <td><%= data.body.resultInfo.resultMsg %></td>
                     </tr>
                     <tr>
                         <th>Transaction Date: </th>
-                        <td><%= data.TXNDATE %></td>
+                        <td><%= data.body.txnDate %></td>
                     </tr>
                 </table>
             </div>
