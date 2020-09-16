@@ -42,7 +42,7 @@ exports.validField = [
     check('user.address.pincode').isPostalCode('IN').withMessage('should be 6 digit no.'),
     check('user.fatherName').trim().matches(/^[a-zA-Z ]*$/).withMessage('name should contain only a-z or A-Z'),
     check('user.motherName').trim().matches(/^[a-zA-Z ]*$/).withMessage('name should contain only a-z or A-Z'),
-    check('category').isIn(['junior','hsenior']).withMessage('should be junior or senior')
+    check('category').isIn(['junior','senior']).withMessage('should be junior or senior')
 ]
 
 exports.validRangotsav = [
@@ -56,7 +56,7 @@ exports.validRangotsav = [
     check('user.*.address.pincode').isPostalCode('IN').withMessage('should be 6 digit no.'),
     check('user.*.fatherName').trim().matches(/^[a-zA-Z ]*$/).withMessage('name should contain only a-z or A-Z'),
     check('user.*.motherName').trim().matches(/^[a-zA-Z ]*$/).withMessage('name should contain only a-z or A-Z'),
-    check('category').isIn(['junior','hsenior']).withMessage('should be junior or senior')
+    check('category').isIn(['junior','senior']).withMessage('should be junior or senior')
 ]
 
 exports.validCareer = [
