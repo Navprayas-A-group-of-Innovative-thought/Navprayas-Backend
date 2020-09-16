@@ -103,34 +103,34 @@ exports.paytmController = (req, res) => {
                 }
               })
 
-              // res.writeHead(200, { "Content-Type": "text/html" });
-              // res.write(`<html>
-              //                       <head>
-              //                           <title>Show Payment Page</title>
-              //                       </head>
-              //                       <body>
-              //                           <center>
-              //                               <h1>Please do not refresh this page...</h1>
-              //                           </center>
-              //                           <form method="post" action="https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?mid=${process.env.TEST_MERCHANT_ID}&orderId=${orderID}" name="paytm">
-              //                               <table border="1">
-              //                                   <tbody>
-              //                                       <input type="hidden" name="mid" value="${process.env.TEST_MERCHANT_ID}">
-              //                                           <input type="hidden" name="orderId" value="${orderID}">
-              //                                           <input type="hidden" name="txnToken" value="${result.body.txnToken}">
-              //                                </tbody>
-              //                             </table>
-              //                                           <script type="text/javascript"> document.paytm.submit(); </script>
-              //                          </form>
-              //                       </body>
-              //                    </html>`);
-              // res.end();
-              var info = {
-                mid: process.env.TEST_MERCHANT_ID,
-                orderId: orderID,
-                txnToken: result.body.txnToken
-              }
-              res.render('refresh',{'data': info})
+              res.writeHead(200, { "Content-Type": "text/html" });
+              res.write(`<html>
+                                    <head>
+                                        <title>Show Payment Page</title>
+                                    </head>
+                                    <body>
+                                        <center>
+                                            <h1>Please do not refresh this page...</h1>
+                                        </center>
+                                        <form method="post" action="https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?mid=${process.env.TEST_MERCHANT_ID}&orderId=${orderID}" name="paytm">
+                                            <table border="1">
+                                                <tbody>
+                                                    <input type="hidden" name="mid" value="${process.env.TEST_MERCHANT_ID}">
+                                                        <input type="hidden" name="orderId" value="${orderID}">
+                                                        <input type="hidden" name="txnToken" value="${result.body.txnToken}">
+                                             </tbody>
+                                          </table>
+                                                        <script type="text/javascript"> document.paytm.submit(); </script>
+                                       </form>
+                                    </body>
+                                  </html>`);
+              res.end();
+              // var info = {
+              //   mid: process.env.TEST_MERCHANT_ID,
+              //   orderId: orderID,
+              //   txnToken: result.body.txnToken
+              // }
+              // res.render('refresh',{'data': info})
             });
           });
 
