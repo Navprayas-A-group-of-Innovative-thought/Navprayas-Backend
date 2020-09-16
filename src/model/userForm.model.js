@@ -122,7 +122,6 @@ var base = function (paths) {
         },
         eventId:{
             type:String,
-            required:true
         },
         admitCardNumber:{
             type:String,
@@ -155,7 +154,6 @@ var mtseFormSchema = new base ({
     },
     transactionToken: {
         type: String,
-        required: true,
         trim: true
     },
     transactionId:{
@@ -190,7 +188,6 @@ var puzzleRaceFormSchema = new base({
     },
     transactionToken: {
         type: String,
-        required: true,
         trim: true
     },
     transactionId:{
@@ -225,7 +222,6 @@ var fhsFormSchema = new base({
     },
     transactionToken: {
         type: String,
-        required: true,
         trim: true
     },
     transactionId:{
@@ -260,7 +256,6 @@ var chessFormSchema = new base({
     },
     transactionToken: {
         type: String,
-        required: true,
         trim: true
     },
     transactionId:{
@@ -299,7 +294,6 @@ var rangotsavFormSchema = new base({
     },
     transactionToken: {
         type: String,
-        required: true,
         trim: true
     },
     category:{
@@ -319,7 +313,6 @@ var careerCounFormSchema = new Schema({
     },
     transactionToken: {
         type: String,
-        required: true,
         trim: true
     },
     lastName:{
@@ -356,7 +349,6 @@ var careerCounFormSchema = new Schema({
     },
     eventId:{
         type:String,
-        required:true
     },
     year:{
         type:Number
