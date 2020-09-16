@@ -85,6 +85,7 @@ exports.callbackController = (req, res) => {
                           res.status(404).json({errorDetails: 'Could not retrieve transaction details.'})
                       } else {
                           transaction.status = response.body.resultInfo.resultStatus;
+                          transaction.details = response.body.resultInfo.resultMsg;
                           transaction.txnId = response.body.txnId;
                           transaction.txnAmt = response.body.txnAmount;
                           transaction.gatewayName = response.body.gatewayName;

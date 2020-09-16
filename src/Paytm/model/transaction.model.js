@@ -10,6 +10,7 @@ const transactionSchema = new mongoose.Schema(
     formId: { type: String },
     orderId: { type: String },
     status: { type: String },
+    details: { type: String },
     txnId: { type: String },
     txnAmt: { type: String },
     gatewayName: { type: String },
