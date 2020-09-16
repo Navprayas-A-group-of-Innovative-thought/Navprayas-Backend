@@ -6,7 +6,9 @@ const Transaction = require("../model/transaction.model");
 const jwt = require("jsonwebtoken");
 
 exports.paytmController = (req, res) => {
-  const token = req.headers.authorization.split(" "); // extracting token from header
+  const token = req.headers.authorization.split(" ");
+  console.log(req.headers)
+  console.log(token)// extracting token from header
   const { _id } = jwt.decode(token[1]); // decoding _id from token
   User.findOne({ _id }).exec((err, user) => {
     // searching for _id in database
