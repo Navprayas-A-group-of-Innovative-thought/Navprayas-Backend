@@ -126,11 +126,9 @@ var base = function (paths) {
         },
         admitCardNumber:{
             type:String,
-            required:true
         },
         year:{
             type:Number,
-            required:true
         },
         formVerified:{
             type:Boolean,
@@ -331,8 +329,7 @@ var careerCounFormSchema = new Schema({
         required:true
     },
     year:{
-        type:Number,
-        required:true
+        type:Number
     },
     formVerified:{
         type:Boolean,

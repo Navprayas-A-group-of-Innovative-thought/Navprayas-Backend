@@ -47,6 +47,8 @@ puzzleRaceFormRouter.route('/register')
         }
         else {
             req.body.formSubmitted = true;
+            req.body.registrationDate = Date.now();
+            req.body.year = new Date().getFullYear();
             models.puzzleRaceUsers.create(req.body)
                 .then((users) => {
                     console.log('Inserted:\n ', users);
@@ -56,14 +58,6 @@ puzzleRaceFormRouter.route('/register')
                 }, (err) => next(err))
                 .catch((err) => next(err));
         }
-        models.puzzleRaceUsers.create(req.body)
-            .then((users) => {
-                console.log('Inserted:\n ', users);
-                res.statusCode = 200;
-                res.setHeader('Content-Type', 'application/json');
-                res.json(users);
-            }, (err) => next(err))
-            .catch((err) => next(err));
     });
 
 //export puzzleRaceFormRouter

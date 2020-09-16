@@ -12,9 +12,7 @@ exports.validmtse = [
     check('user.fatherName').trim().notEmpty().withMessage('can\'t be left blank').matches(/^[a-zA-Z ]*$/).withMessage('name should contain only a-z or A-Z'),
     check('user.motherName').trim().notEmpty().withMessage('can\'t be left blank').matches(/^[a-zA-Z ]*$/).withMessage('name should contain only a-z or A-Z'),
     check('user.education.class').notEmpty().withMessage('can\'t be left blank').isInt({min:5,max:10}).withMessage('should be from 5 to 10'),
-    check('registrationDate').isDate().withMessage('Date should be in YYYY/MM/DD format'),
-    check('questionPaperLang').isIn(['english','hindi']).withMessage('should be hindi or english'),
-    check('year').isInt().withMessage('four digit year eg. 2000')     
+    check('questionPaperLang').isIn(['english','hindi']).withMessage('should be hindi or english')
 ]
 
 exports.validPuzzleRace = [
@@ -29,9 +27,7 @@ exports.validPuzzleRace = [
     check('user.fatherName').trim().matches(/^[a-zA-Z ]*$/).withMessage('name should contain only a-z or A-Z'),
     check('user.motherName').trim().matches(/^[a-zA-Z ]*$/).withMessage('name should contain only a-z or A-Z'),
     check('user.education.class').isInt({min:5,max:10}).withMessage('should be from 5 to 10'),
-    check('registrationDate').isDate().withMessage('Date should be in YYYY/MM/DD format'),
-    check('category').isIn(['junior','senior']).withMessage('should be junior or senior'),
-    check('year').isInt().withMessage('four digit year eg. 2000')
+    check('category').isIn(['junior','senior']).withMessage('should be junior or senior')
 ]
 
 
@@ -46,9 +42,7 @@ exports.validField = [
     check('user.address.pincode').isPostalCode('IN').withMessage('should be 6 digit no.'),
     check('user.fatherName').trim().matches(/^[a-zA-Z ]*$/).withMessage('name should contain only a-z or A-Z'),
     check('user.motherName').trim().matches(/^[a-zA-Z ]*$/).withMessage('name should contain only a-z or A-Z'),
-    check('registrationDate').isDate().withMessage('Date should be in YYYY/MM/DD format'),
-    check('category').isIn(['junior','hsenior']).withMessage('should be junior or senior'),
-    check('year').isInt().withMessage('four digit year eg. 2000')
+    check('category').isIn(['junior','hsenior']).withMessage('should be junior or senior')
 ]
 
 exports.validRangotsav = [
@@ -62,9 +56,7 @@ exports.validRangotsav = [
     check('user.*.address.pincode').isPostalCode('IN').withMessage('should be 6 digit no.'),
     check('user.*.fatherName').trim().matches(/^[a-zA-Z ]*$/).withMessage('name should contain only a-z or A-Z'),
     check('user.*.motherName').trim().matches(/^[a-zA-Z ]*$/).withMessage('name should contain only a-z or A-Z'),
-    check('registrationDate').isDate().withMessage('Date should be in YYYY/MM/DD format'),
-    check('category').isIn(['junior','hsenior']).withMessage('should be junior or senior'),
-    check('year').isInt().withMessage('four digit year eg. 2000')
+    check('category').isIn(['junior','hsenior']).withMessage('should be junior or senior')
 ]
 
 exports.validCareer = [
@@ -74,7 +66,5 @@ exports.validCareer = [
     check('gender').trim().isIn(['male','female','others']).withMessage('should be male, female, or others'),
     check('email').isEmail().withMessage('invalid email').normalizeEmail(),
     check('contact.primary').isMobilePhone('en-IN').withMessage('10 digit mobile number'),
-    check('contact.other').isMobilePhone('en-IN').withMessage('10 digit mobile number'),
-    check('registrationDate').isDate().withMessage('Date should be in YYYY/MM/DD format'),
-    check('year').isInt().withMessage('four digit year eg. 2000')
+    check('contact.other').isMobilePhone('en-IN').withMessage('10 digit mobile number')
 ]
