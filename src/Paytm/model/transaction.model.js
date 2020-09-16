@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-import "mongoose-type-email";
-import Email from "mongoose-type-email";
+
 
 // Schema for all transaction details
 const transactionSchema = new mongoose.Schema(
