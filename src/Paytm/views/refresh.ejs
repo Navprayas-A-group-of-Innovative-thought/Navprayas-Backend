@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Show Payment Page</title>
-    <meta content="text/html; charset=utf-8" />
   </head>
   <body>
     <center>
       <h1>Please do not refresh this page...</h1>
     </center>
-    <form
-      method="POST"
-      action="https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?mid=<%= data.mid %>&orderId=<%= data.orderId %>
-      name="paytm"
-    >
+    <form name="paytm" method="POST" action="https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?mid=<%= data.mid %>&orderId=<%= data.orderId %>">
       <table border="1">
         <tbody>
           <input
@@ -28,9 +26,9 @@
           />
         </tbody>
       </table>
-      <script type="text/javascript">
-        document.paytm.submit();
-      </script>
     </form>
+    <script type="text/javascript">
+      document.paytm.submit();
+    </script>
   </body>
 </html>

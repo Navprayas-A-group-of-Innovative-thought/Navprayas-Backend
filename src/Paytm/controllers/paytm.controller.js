@@ -123,7 +123,7 @@ exports.paytmController = (req, res) => {
 
             // Saving details in userForm database
             if (formID == "MTSE") {
-              mtseUsers.findOne({ 'user.email': email }).exec((err, form) => {
+              mtseUsers.findOne({ "user.email": email }).exec((err, form) => {
                 if (err || !form) {
                   console.log(err);
                 }
@@ -140,24 +140,26 @@ exports.paytmController = (req, res) => {
                 });
               });
             } else if (formID == "PUZZLE") {
-              puzzleRaceUsers.findOne({ 'user.email': email }).exec((err, form) => {
-                if (err || !form) {
-                  console.log(err);
-                }
-                form.eventId = formID;
-                form.transactionToken = result.body.txnToken;
-                form.orderId = orderID;
-                form.save((err) => {
-                  if (err) {
-                    console.log("Save error", errorHandler(err));
-                    return res.status(500).json({
-                      errorDetails: errorHandler(err),
-                    });
+              puzzleRaceUsers
+                .findOne({ "user.email": email })
+                .exec((err, form) => {
+                  if (err || !form) {
+                    console.log(err);
                   }
+                  form.eventId = formID;
+                  form.transactionToken = result.body.txnToken;
+                  form.orderId = orderID;
+                  form.save((err) => {
+                    if (err) {
+                      console.log("Save error", errorHandler(err));
+                      return res.status(500).json({
+                        errorDetails: errorHandler(err),
+                      });
+                    }
+                  });
                 });
-              });
             } else if (formID == "FHS") {
-              fhsUsers.findOne({ 'user.email': email }).exec((err, form) => {
+              fhsUsers.findOne({ "user.email": email }).exec((err, form) => {
                 if (err || !form) {
                   console.log(err);
                 }
@@ -174,7 +176,7 @@ exports.paytmController = (req, res) => {
                 });
               });
             } else if (formID == "CHESS") {
-              chessUsers.findOne({ 'user.email': email }).exec((err, form) => {
+              chessUsers.findOne({ "user.email": email }).exec((err, form) => {
                 if (err || !form) {
                   console.log(err);
                 }
@@ -191,47 +193,56 @@ exports.paytmController = (req, res) => {
                 });
               });
             } else if (formID == "RANG") {
-              rangotsavUsers.findOne({ 'user.email': email }).exec((err, form) => {
-                if (err || !form) {
-                  console.log(err);
-                }
-                form.eventId = formID;
-                form.transactionToken = result.body.txnToken;
-                form.orderId = orderID;
-                form.save((err) => {
-                  if (err) {
-                    console.log("Save error", errorHandler(err));
-                    return res.status(500).json({
-                      errorDetails: errorHandler(err),
-                    });
+              rangotsavUsers
+                .findOne({ "user.email": email })
+                .exec((err, form) => {
+                  if (err || !form) {
+                    console.log(err);
                   }
+                  form.eventId = formID;
+                  form.transactionToken = result.body.txnToken;
+                  form.orderId = orderID;
+                  form.save((err) => {
+                    if (err) {
+                      console.log("Save error", errorHandler(err));
+                      return res.status(500).json({
+                        errorDetails: errorHandler(err),
+                      });
+                    }
+                  });
                 });
-              });
             }
 
-            res.writeHead(200, { "Content-Type": "text/html" });
-            res.write(`<html>
-                                    <head>
-                                        <title>Payments Page</title>
-                                    </head>
-                                    <body>
-                                        <center>
-                                            <h1>Please do not refresh this page...</h1>
-                                        </center>
-                                        <form method="post" action="https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?mid=${process.env.TEST_MERCHANT_ID}&orderId=${orderID}" name="paytm">
-                                            <table border="1">
-                                                <tbody>
-                                                    <input type="hidden" name="mid" value="${process.env.TEST_MERCHANT_ID}">
-                                                        <input type="hidden" name="orderId" value="${orderID}">
-                                                        <input type="hidden" name="txnToken" value="${result.body.txnToken}">
-                                             </tbody>
-                                          </table>
-                                                        <script type="text/javascript"> document.paytm.submit(); </script>
-                                       </form>
-                                    </body>
-                                  </html>`);
+            // res.writeHead(200, { "Content-Type": "text/html" });
+            // res.write(`<html>
+            //                         <head>
+            //                             <title>Payments Page</title>
+            //                         </head>
+            //                         <body>
+            //                             <center>
+            //                                 <h1>Please do not refresh this page...</h1>
+            //                             </center>
+            //                             <form method="post" action="https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?mid=${process.env.TEST_MERCHANT_ID}&orderId=${orderID}" name="paytm">
+            //                                 <table border="1">
+            //                                     <tbody>
+            //                                         <input type="hidden" name="mid" value="${process.env.TEST_MERCHANT_ID}">
+            //                                             <input type="hidden" name="orderId" value="${orderID}">
+            //                                             <input type="hidden" name="txnToken" value="${result.body.txnToken}">
+            //                                  </tbody>
+            //                               </table>
+            //                                             <script type="text/javascript"> document.paytm.submit(); </script>
+            //                            </form>
+            //                         </body>
+            //                       </html>`);
 
-            res.end();
+            // res.end();
+
+            var info = {
+              mid: process.env.TEST_MERCHANT_ID,
+              orderId: orderID,
+              txnToken: result.body.txnToken,
+            };
+            res.render("refresh", { data: info });
           });
         });
 
