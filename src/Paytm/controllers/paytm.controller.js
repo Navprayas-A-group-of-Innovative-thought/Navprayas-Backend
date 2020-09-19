@@ -242,7 +242,7 @@ exports.paytmController = (req, res) => {
               orderId: orderID,
               txnToken: result.body.txnToken,
             };
-            res.render("refresh", { data: info });
+            res.json({ data: info });
           });
         });
 
