@@ -11,6 +11,7 @@ const auth = (req, res, next) => {
       next();
     }
   } catch (e) {
+    console.log("User is not logged in.")
     return res
       .status(401)
       .json({

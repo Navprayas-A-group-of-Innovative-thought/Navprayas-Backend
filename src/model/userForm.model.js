@@ -24,7 +24,8 @@ var userInfoBase = function (paths) {
         },
         email:{
             type:String,
-            required:true
+            required:true,
+            unique:true
         },
         contact:{                             //contact object
             primary:{
@@ -32,26 +33,22 @@ var userInfoBase = function (paths) {
                 required:true
             },
             other:{
-                type:Number,
-                required:true
+                type:Number
             }
         },
         address:{                             //address object
             houseNumber:{
-                type:String,
-                required:true
+                type:String
             },
             landmark:{
-                type:String,
-                required:true
+                type:String
             },
             addressLine1:{
                 type:String,
                 required:true
             },
             addressLine2:{
-                type:String,
-                required:true
+                type:String
             },
             district:{
                 type:String,
@@ -67,7 +64,8 @@ var userInfoBase = function (paths) {
             },
             country:{
                 type:String,
-                required:true
+                required:true,
+                default:'India'
             },
             pincode:{
                 type:Number,
@@ -150,8 +148,7 @@ var base = function (paths) {
 // MTSE Form Schema STARTS here
 var mtseFormSchema = new base ({
     user:{
-        type:userInfoWithEducationSchema,
-        required:true
+        type:userInfoWithEducationSchema
     },
     transactionId:{
         type:String,
@@ -180,8 +177,8 @@ var mtseFormSchema = new base ({
 // Puzzle Race Form Schema STARTS here
 var puzzleRaceFormSchema = new base({
     user:{
-        type:userInfoWithEducationSchema,
-        required:true
+        type:[userInfoWithEducationSchema],
+        validate: [arrayLimit, '{PATH} exceeds the limit of 3']
     },
     transactionId:{
         type:String,
@@ -210,8 +207,7 @@ var puzzleRaceFormSchema = new base({
 // Free Hand Sketching Form Schema STARTS here
 var fhsFormSchema = new base({
     user:{
-        type:userInfoSchema,
-        required:true
+        type:userInfoSchema
     },
     transactionId:{
         type:String,
@@ -240,8 +236,7 @@ var fhsFormSchema = new base({
 // Chess Form Schema STARTS here
 var chessFormSchema = new base({
     user:{
-        type:userInfoSchema,
-        required:true
+        type:userInfoSchema
     },
     transactionId:{
         type:String,
@@ -274,8 +269,7 @@ var chessFormSchema = new base({
 //Rangotsav Form Schema STARTS here
 var rangotsavFormSchema = new base({
     user:{
-        type:[userInfoSchema],
-        required:true
+        type:[userInfoSchema]
     },
     category:{
         type:String,
@@ -315,18 +309,50 @@ var careerCounFormSchema = new Schema({
             required:true
         },
         other:{
+            type:Number
+        }
+    },
+    address:{                             //address object
+        houseNumber:{
+            type:String
+        },
+        landmark:{
+            type:String
+        },
+        addressLine1:{
+            type:String,
+            required:true
+        },
+        addressLine2:{
+            type:String
+        },
+        district:{
+            type:String,
+            required:true
+        },
+        city:{
+            type:String,
+            required:true
+        },
+        state:{
+            type:String,
+            required:true
+        },
+        country:{
+            type:String,
+            required:true,
+            default:'India'
+        },
+        pincode:{
             type:Number,
             required:true
         }
     },
     registrationDate:{
-        type:Date,
-        required:true,
-        trim:true
+        type:Date
     },
     eventId:{
-        type:String,
-        required:true
+        type:String
     },
     year:{
         type:Number
@@ -346,6 +372,12 @@ var careerCounFormSchema = new Schema({
 });
 // Career Counselling Form Schema ENDS here
 //---------------------------------------------------------------------------------
+
+// arrayLimit function to set the team size to 3
+function arrayLimit(val) {
+    return val.length <= 3;
+  }
+
 // Export Form Models
 var mtseUsers = mongoose.model('mtseUsers',mtseFormSchema);                            //MTSE model
 var puzzleRaceUsers = mongoose.model('puzzleRaceUsers',puzzleRaceFormSchema);          //Puzzle Race model
