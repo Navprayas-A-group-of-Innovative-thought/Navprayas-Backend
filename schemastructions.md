@@ -55,6 +55,7 @@
     * After the submission of form, **formSubmitted** will be set to **true**.
 
 #### 2. PUZZLE RACE FORM SCHEMA
+* Puzzle Race is team event.
 * The route (**GET**) is ((URL))/**puzzlerace/allUsers/**
     * This route will only be accessed by those who are logged in as ADMIN.
     * This route is used to get all the registered users of PUZZLE RACE.
@@ -63,8 +64,37 @@
     * Body request will be passed as :
     ```json
     {
-        "user": {
-            "firstName": "hriik",
+        "user": [{
+            "firstName": "hritik",
+            "lastName": "kumar",
+            "dob": "2002-03/21",
+            "gender": "male",
+            "email":"yowakaw366@mojzur.com",
+            "contact": {
+                "primary": "9204534523",
+                "other": "7026378427"
+            },
+            "address": {
+                "houseNumber": "BR-01-02",
+                "landmark": "new delhi park",
+                "addressLine1": "manpur",
+                "addressLine2": "patwatoli",
+                "district": "gaya",
+                "city": "gaya",
+                "state": "bihar",
+                "country": "india",
+                "pincode": "672589"
+            },
+            "fatherName": "me",
+            "motherName": "fu",
+            "education": {
+                "class": "6",
+                "school": "pes",
+                "board": "cbse"
+            }
+        },
+        {
+            "firstName": "hritik",
             "lastName": "kumar",
             "dob": "2002-03/21",
             "gender": "male",
@@ -92,6 +122,35 @@
                 "board": "cbse"
             }
         },
+        {
+            "firstName": "hritik",
+            "lastName": "kumar",
+            "dob": "2002-03/21",
+            "gender": "male",
+            "email": "asdf@intrees.org",
+            "contact": {
+                "primary": "9204534523",
+                "other": "7026378427"
+            },
+            "address": {
+                "houseNumber": "BR-01-02",
+                "landmark": "new delhi park",
+                "addressLine1": "manpur",
+                "addressLine2": "patwatoli",
+                "district": "gaya",
+                "city": "gaya",
+                "state": "bihar",
+                "country": "india",
+                "pincode": "672589"
+            },
+            "fatherName": "me",
+            "motherName": "fu",
+            "education": {
+                "class": "6",
+                "school": "pes",
+                "board": "cbse"
+            }
+        }],
         "transactionId": "1234",
         "transactionDate": "2020/08/15",
         "orderId": "PR1234",
@@ -99,12 +158,14 @@
         "formSubmitted": "false",
         "formVerified": "false",
         "registrationDate": "2020/08/15",
-        "eventId": "mtse",
-        "category": "junior",
+        "eventId": "puzzle",
         "admitCardNumber": "12",
+        "category": "junior",
         "year": "2020"
     }
+
     ```
+    * **user** is an array having length <=3.
     * These Fields are validated. [Click me](#validation) to go to Validation section.
     * After the submission of form, **formSubmitted** will be set to **true**.
 
@@ -148,7 +209,7 @@
         "formSubmitted": "false",
         "formVerified": "false",
         "registrationDate": "2020/08/15",
-        "eventId": "mtse",
+        "eventId": "fhs",
         "category": "junior",
         "admitCardNumber": "12",
         "year": "2020"
@@ -208,6 +269,7 @@
     * After the submission of form, **formSubmitted** will be set to **true**.
 
 #### 5. RANGOTSAV FORM SCHEMA
+* Rangotsav is team event.
 * The route (**GET**) is ((URL))/**rangotsav/allUsers/**
     * This route will only be accessed by those who are logged in as ADMIN.
     * This route is used to get all the registered users of RANGOTSAV.
@@ -216,15 +278,63 @@
     * Body request will be passed as :
     ```json
     {
-        "user":[ {
-            "firstName": "hriik",
+        "user": [{
+            "firstName": "hritik",
             "lastName": "kumar",
-            "dob": "2002/03/21",
+            "dob": "2002-03/21",
+            "gender": "male",
+            "email":"yowakaw366@mojzur.com",
+            "contact": {
+                "primary": "9204534523",
+                "other": "7026378427"
+            },
+            "address": {
+                "houseNumber": "BR-01-02",
+                "landmark": "new delhi park",
+                "addressLine1": "manpur",
+                "addressLine2": "patwatoli",
+                "district": "gaya",
+                "city": "gaya",
+                "state": "bihar",
+                "country": "india",
+                "pincode": "672589"
+            },
+            "fatherName": "me",
+            "motherName": "fu"
+        },
+        {
+            "firstName": "hritik",
+            "lastName": "kumar",
+            "dob": "2002-03/21",
             "gender": "male",
             "email": "a@gmail.com",
             "contact": {
                 "primary": "9204534523",
-                "other": "7026374627"
+                "other": "7026378427"
+            },
+            "address": {
+                "houseNumber": "BR-01-02",
+                "landmark": "new delhi park",
+                "addressLine1": "manpur",
+                "addressLine2": "patwatoli",
+                "district": "gaya",
+                "city": "gaya",
+                "state": "bihar",
+                "country": "india",
+                "pincode": "672589"
+            },
+            "fatherName": "me",
+            "motherName": "fu"
+        },
+        {
+            "firstName": "hritik",
+            "lastName": "kumar",
+            "dob": "2002-03/21",
+            "gender": "male",
+            "email": "asdf@intrees.org",
+            "contact": {
+                "primary": "9204534523",
+                "other": "7026378427"
             },
             "address": {
                 "houseNumber": "BR-01-02",
@@ -248,7 +358,9 @@
         "admitCardNumber": "12",
         "year": "2020"
     }
+
     ```
+    * **user** is an array having length <=3.
     * These Fields are validated. [Click me](#validation) to go to Validation section.
     * After the submission of form, **formSubmitted** will be set to **true**.
 
@@ -270,6 +382,13 @@
             "primary": "9204534523",
             "other": "7026378427"
         },
+        "address": {
+        "addressLine1":"Patwatoli",
+        "district":"Gaya",
+        "city":"Gaya",
+        "state":"Bihar",
+        "pincode":"823003"
+    },
         "registrationDate": "2020/08/15",
         "formSubmitted": "false",
         "formVerified": "false",
@@ -282,20 +401,26 @@
 
 ### Validation
 * used **express-validator** package
-* Every field of the form is required to be filled, except 
-    * registrationDate
+* Not required fields:
+    * contact.other
+    * address.houseNo
+    * address.landmark
+    * address.addressLine2
+    * registrationDate (by default set to present date of registration)
     * transactionId
     * transactionDate
     * orderId
     * paymentStatus
     * admitCardNumber
+    * year (by default set to present year)
+* Except these above mentioned **not required** field, all are required.
 * Value of the fields is accepted in the following format :
     * **firstName**, **lastName** : hritik (only a-zA-Z)
     * **fatherName**, **motherName** : Meghnath prasad (only a-zA-Z and space in between)
     * **dates** : 2002/03/21 (YYYY/MM/DD)
     * **email** : hritik.kmr.111@gmail.com
     * **mobile no.** : +919204526767 or 09204253423 or 9204256251 
-    * **pincode** : 823003 (valid 6 digit postal code)
+    * **pincode** : 823003 (valid 6 digit indian postal code)
     * **orderId** : string (eg. mtse12345)
     * **paymentStatus** : PENDING (by default)
     * **transactionId** : string

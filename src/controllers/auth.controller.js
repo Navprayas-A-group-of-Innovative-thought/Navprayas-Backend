@@ -93,25 +93,25 @@ exports.signupController = (req, res) => {
 
 // Activation and save to db
 exports.activationController = (req, res) => {
-    const { token } = req.body;
-    if (token) {
-      //Verify the token if valid or not or expired
-      jwt.verify(token, process.env.JWT_ACCOUNT_ACTIVATION, (err, decoded) => {
-        if (err) {
-          return res.status(401).json({
-            errorDetails: "Token Expired. Please sign up again.",
-          });
-        } else {
-          //if valid, save to database
-          //Get email and password from token
-          const {
-            firstName,
-            lastName,
-            email,
-            password,
-            dob,
-            gender,
-          } = jwt.decode(token);
+  const { token } = req.body;
+  if (token) {
+    //Verify the token if valid or not or expired
+    jwt.verify(token, process.env.JWT_ACCOUNT_ACTIVATION, (err, decoded) => {
+      if (err) {
+        return res.status(401).json({
+          errorDetails: "Token Expired. Please sign up again.",
+        });
+      } else {
+        //if valid, save to database
+        //Get email and password from token
+        const {
+          firstName,
+          lastName,
+          email,
+          password,
+          dob,
+          gender,
+        } = jwt.decode(token);
 
           const user = new User({
             firstName,
