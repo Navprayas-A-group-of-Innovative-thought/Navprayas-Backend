@@ -1,6 +1,6 @@
 //Validation helper
 const { check } = require("express-validator");
-import regeneratorRuntime from "regenerator-runtime";
+import regeneratorRuntime from 'regenerator-runtime'
 
 //Signup Validation
 exports.validSignup = [

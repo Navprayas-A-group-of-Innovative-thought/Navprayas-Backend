@@ -120,7 +120,6 @@ var base = function (paths) {
         },
         eventId:{
             type:String,
-            required:true
         },
         admitCardNumber:{
             type:String,
@@ -149,6 +148,10 @@ var base = function (paths) {
 var mtseFormSchema = new base ({
     user:{
         type:userInfoWithEducationSchema
+    },
+    transactionToken: {
+        type: String,
+        trim: true
     },
     transactionId:{
         type:String,
@@ -180,6 +183,10 @@ var puzzleRaceFormSchema = new base({
         type:[userInfoWithEducationSchema],
         validate: [arrayLimit, '{PATH} exceeds the limit of 3']
     },
+    transactionToken: {
+        type: String,
+        trim: true
+    },
     transactionId:{
         type:String,
         trim:true
@@ -209,6 +216,10 @@ var fhsFormSchema = new base({
     user:{
         type:userInfoSchema
     },
+    transactionToken: {
+        type: String,
+        trim: true
+    },
     transactionId:{
         type:String,
         trim:true
@@ -237,6 +248,10 @@ var fhsFormSchema = new base({
 var chessFormSchema = new base({
     user:{
         type:userInfoSchema
+    },
+    transactionToken: {
+        type: String,
+        trim: true
     },
     transactionId:{
         type:String,
@@ -271,6 +286,10 @@ var rangotsavFormSchema = new base({
     user:{
         type:[userInfoSchema]
     },
+    transactionToken: {
+        type: String,
+        trim: true
+    },
     category:{
         type:String,
         required:true
@@ -285,6 +304,10 @@ var careerCounFormSchema = new Schema({
     firstName:{
         type:String,
         required:true
+    },
+    transactionToken: {
+        type: String,
+        trim: true
     },
     lastName:{
         type:String,
@@ -352,7 +375,7 @@ var careerCounFormSchema = new Schema({
         type:Date
     },
     eventId:{
-        type:String
+        type:String,
     },
     year:{
         type:Number

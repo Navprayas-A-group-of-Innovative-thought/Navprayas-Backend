@@ -79,11 +79,11 @@ exports.signupController = (req, res) => {
     // send email from here
     mailTransporter.sendMail(mailDetails, function (err, data) {
       if (err) {
-        return res.status(451).json({
+          return res.status(451).json({
           errorDetails: errorHandler(err),
         });
       } else {
-        return res.status(250).json({
+          return res.status(250).json({
           responseData: `Email has been sent to ${email}.`,
         });
       }
@@ -113,34 +113,34 @@ exports.activationController = (req, res) => {
           gender,
         } = jwt.decode(token);
 
-        const user = new User({
-          firstName,
-          lastName,
-          email,
-          password,
-          dob,
-          gender,
-        });
-        user.otherDetails.emailVerified = true
-        user.save((err, user) => {
-          if (err) {
-            console.log("Save error", errorHandler(err));
-            return res.status(500).json({
-              errorDetails: errorHandler(err),
-            });
-          } else {
-            return res.status(200).json({
-              responseData: "Signup success",
-              user,
-            });
-          }
-        });
-      }
-    });
-  } else {
-    return res.sttaus(500).json({
-      errorDetails: "Error occurred. Please try again",
-    });
+          const user = new User({
+            firstName,
+            lastName,
+            email,
+            password,
+            dob,
+            gender,
+          });
+          user.otherDetails.emailVerified = true
+          user.save((err, user) => {
+            if (err) {
+              console.log("Save error", errorHandler(err));
+              return res.status(500).json({
+                errorDetails: errorHandler(err),
+              });
+            } else {
+              return res.status(200).json({
+                responseData: "Signup success",
+                user,
+              });
+            }
+          });
+        }
+      });
+    } else {
+      return res.status(500).json({
+        errorDetails: "Error occurred. Please try again",
+      });
   }
 };
 

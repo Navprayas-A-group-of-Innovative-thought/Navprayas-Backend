@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Transaction Details</title>
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<style>
+    body {
+      background-color: #e9e8e8;
+      font-family: Nunito, sans-serif;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      text-align: center;
+      background: #212529;
+      color: white;
+      padding: 15px;
+      width: 100%;
+    }
+    .footer a {
+      text-decoration: none ;
+      color: white;
+    }
+</style>
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">NAVPRAYAS</a>
+</nav>
+<div class="my-5">
+    <div style="width: 510px; margin: auto" class="card">
+        <div class="card-body">
+            <center>
+                <h2>Payment <%= head %></h2>
+            </center>
+            <div>
+                <table class="table table-borderless">
+                    <tr>
+                        <th>Order ID: </th>
+                        <td><%= data.body.orderId %></td>
+                    <tr>
+                    <tr>
+                        <th>Transaction ID: </th>
+                        <td><%= data.body.txnId %></td>
+                    <tr>
+                        <th>Bank Transaction ID: </th>
+                        <td><%= data.body.bankTxnId %></td>
+                    </tr>
+                    <tr>
+                        <th>Transaction Amount: </th>
+                        <td>₹ <%= data.body.txnAmount %></td>
+                    </tr>
+                    <tr>
+                        <th>Status: </th>
+                        <td><%= data.body.resultInfo.resultStatus %></td>
+                    </tr>
+                    <tr>
+                        <th>Response Message: </th>
+                        <td><%= data.body.resultInfo.resultMsg %></td>
+                    </tr>
+                    <tr>
+                        <th>Transaction Date: </th>
+                        <td><%= data.body.txnDate %></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    setTimeout(function(){
+        window.location.href='https://navprayas-frontend-dev.herokuapp.com/profile/show';
+    }, 10000)
+</script>
