@@ -79,11 +79,11 @@ exports.signupController = (req, res) => {
     // send email from here
     mailTransporter.sendMail(mailDetails, function (err, data) {
       if (err) {
-        return res.status(451).json({
+          return res.status(451).json({
           errorDetails: errorHandler(err),
         });
       } else {
-        return res.status(250).json({
+          return res.status(250).json({
           responseData: `Email has been sent to ${email}.`,
         });
       }
@@ -138,7 +138,7 @@ exports.activationController = (req, res) => {
         }
       });
     } else {
-      return res.sttaus(500).json({
+      return res.status(500).json({
         errorDetails: "Error occurred. Please try again",
       });
   }
